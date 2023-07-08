@@ -39,7 +39,7 @@
     height: calc(1.8125rem + 2px);
   }
   &::placeholder {
-    color: $text-muted;
+    //color: $text-muted;
     font-size: $input-placeholder-font-size;
   }
 }

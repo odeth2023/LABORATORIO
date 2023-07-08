@@ -13,7 +13,7 @@
               </nav>
             </div>
 
-            <form class="forms-sample" action="{{route('admin.movie.register')}}" method='POST' enctype='multipart/form-data'>
+            <form class="forms-sample texto" action="{{route('admin.movie.register')}}" method='POST' enctype='multipart/form-data'>
             {{csrf_field()}}
               <div class="row">
 
@@ -58,7 +58,7 @@
                     <div class="card">
                           <div class="card-body">
                             <div class='ContenedorImage'>
-                              <img src="images/preview.png" alt="" id='img' >
+                              <img src="images/preview.png" alt="" id='imgPreview' >
                             </div>
 
                           </div>
@@ -67,14 +67,15 @@
   
               </div>
 
-              <button type="submit" class="btn btn-primary m-2" value="Save">Registrar</button>
+              <button type="submit" class="btn btn-primary m-2" value="Save">Registrar Pelicula</button>
 
             </form>
 
           
         
 
-
+              <style>
+            </style>
 
 @endsection
 

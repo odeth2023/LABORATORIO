@@ -96,9 +96,6 @@ class MovieController extends Controller
     {
         
         $request->validate([
-            'name'=>'required',
-            'img'=>'required',
-            'description'=>'required',
             'price'=>'required|numeric'
             
 
