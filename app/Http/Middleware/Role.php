@@ -16,16 +16,22 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
+        //admin role=1
+        //user role=0
         if(auth()->check())
         {
-            if(auth()->user()->role==1){
+            if(auth()->user()->role=='1'){
                 return $next($request);
             }
             else{
-                return to_route('user.home');
+                //return to_route('user.home');
+                return redirect('user/home')->with('message','Acceso denegado, no cuenta con permisos suficientes');
             } 
+        }else{
+            //return to_route('user.home');
+            return redirect('user/home');
         }
         
-       
+        return $next($request);
     }
 }

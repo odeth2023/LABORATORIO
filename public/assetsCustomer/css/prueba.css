@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Poly&family=Poppins:wght@400;500;600;700;800&display=swap");
+
+@font-face {
+    font-family: 'Noir Pro';
+    src: url(fonts/NoirPro-Regular.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'Noir Pro Bold';
+    src: url(fonts/NoirPro-Bold.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'Noir Pro Semi Bold';
+    src: url(fonts/NoirPro-SemiBold.otf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'Noir Pro Light';
+    src: url(fonts/NoirPro-Light.otf) format('opentype');
+  }
+
+  :root {
+    --font-primary: "Noir Pro";
+    --font-sec: "Poppins", sans-serif;
+    --font-Noir-Pro-Bold: "Noir Pro Bold";
+    --font-Noir-Pro-semiBold: "Noir Pro Semi Bold";
+    --font-Noir-Pro-Light: "Noir Pro Light";
+  }
+  
+
+html{
+    font-size: 62.5%;
+    }
+
+body{
+        background-color: #0e1214;
+    }
+
+.container{
+    max-width: 1200px;
+    margin:0 auto;
+    padding:3rem 2rem;
+    }
+
+.container h2{
+    width: 100%;
+    font-family: var(--font-Noir-Pro-Bold);
+    font-weight: 700;
+    font-size: 40px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+    img {
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+      }
+
+    .carta{
+        margin-bottom: 30px;
+    }
+
+    .container .carta img {
+        margin-bottom: 20px;
+        width: 100%;
+        object-fit: fill;
+    }
+
+    .container .carta p{
+        font-size: 1.5rem;
+        color:#444;
+    }

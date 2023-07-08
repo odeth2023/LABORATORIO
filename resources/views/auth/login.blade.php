@@ -1,36 +1,34 @@
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
-  </head>
-  <body>
-    <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="row w-100 m-0">
-          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-            <div class="card col-lg-4 mx-auto">
-              <div class="card-body px-5 py-5">
-                <h3 class="card-title text-left mb-3">Login</h3>
-                <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                  <div class="form-group">
-                    <label>Username or email *</label>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assetsCustomer/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <title>LOGIN</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <!--<a href="#"><img src="img/netflixlogo.png" alt=""></a>-->
+            <a class="text-danger fs-3 fw-bolder text-decoration-none" href="">Cinemovie</a>
+        </div>
+    </div>
+
+    <!--usuario, clave, ingresar -->
+    <div class="login_body">
+        <div class="login_box">
+            
+            <h2>Entrar</h2>
+            <form method="post" action="{{ route('login') }}">
+              @csrf
+                <div class="input_box">
+                <label>Username or email *</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -38,8 +36,10 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                  </div>
-                  <div class="form-group">
+                </div>
+
+                <div class="input_box">
+                    
                     <label>Password *</label>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -48,49 +48,39 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                  </div>
-                  <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Remember me </label>
-                    </div>
-                    <a href="#" class="forgot-pass">Forgot password</a>
-                  </div>
-                  <div class="text-center">
-                    <!--<button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>-->
-                    <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                    </button>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-facebook me-2 col">
-                      <i class="mdi mdi-facebook"></i> Facebook </button>
-                    <button class="btn btn-google col">
-                      <i class="mdi mdi-google-plus"></i> Google plus </button>
-                  </div>
-                  <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
-                </form>
-              </div>
+                </div>
+
+                <div>
+                    <input class="mb-3 submit" type="submit">{{ __('Login') }}</input>
+    
+                   
+
+                </div>
+                
+            </form>
+
+            <div class="support">
+                <div class="remember">
+                    <span><input type="checkbox" style="margin: 0;padding: 0; height: 13px;"></span>
+                    <span>Lembre-se de mim</span>
+                </div>
+                <div class="help">
+                    <a href="#">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
             </div>
-          </div>
-          <!-- content-wrapper ends -->
+
+            <div class="login_footer pt-3">
+
+                <div class="sign_up">
+                    <p>¿Nuevo por aquí? <a href="#">Registrate Ahora</a></p>
+                </div>
+
+                
+            </div>
         </div>
-        <!-- row ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="assets/js/off-canvas.js"></script>
-    <script src="assets/js/hoverable-collapse.js"></script>
-    <script src="assets/js/misc.js"></script>
-    <script src="assets/js/settings.js"></script>
-    <script src="assets/js/todolist.js"></script>
-    <!-- endinject -->
-  </body>
+</body>
+
 </html>
