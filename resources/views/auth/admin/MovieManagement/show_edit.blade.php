@@ -26,18 +26,26 @@
                               <div class="form-group p-2">
                                 <label for="exampleInputUsername1">Nombre</label>
                                 <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" name='name'value="{{$movie->name}}">
+                                @error('name')
+                                <small>*{{$message}}</small> 
+                                @enderror
                               </div>
                               <div class="form-group p-2">
                                 <!--text area no funciona como input-->
                                 <label for="exampleTextarea1">Descripcion</label>
                                 <textarea class="form-control" id="exampleTextarea1" rows="4" name='description'>{{$movie->description}}</textarea>
+                                @error('description')
+                                <small>*{{$message}}</small> 
+                                @enderror
                               </div>
 
                               
                               <div class="form-group p-2">
                                 <label for="exampleInputPassword1">Precio</label>
                                 <input type="text" class="form-control"  placeholder="Ejem: 2" name='price'value="{{$movie->price}}">
-                                
+                                @error('price')
+                                <small>*{{$message}}</small> 
+                                @enderror
                               </div>
                               
 
@@ -45,7 +53,9 @@
 
                                 <label for='img'>File upload</label>
                                 <input type="file" name="img" class="form-control" id='img' value="{{$movie->img}}">
-
+                                @error('img')
+                                <small>*{{$message}}</small> 
+                                @enderror
                               </div>
                             
                           </div>

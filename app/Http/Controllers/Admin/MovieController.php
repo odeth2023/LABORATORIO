@@ -33,6 +33,9 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name'=>'required|max:255',
+            'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
+            'description'=>'required|max:255',
             'price'=>'required|numeric'
 
         ]);
@@ -96,6 +99,9 @@ class MovieController extends Controller
     {
         
         $request->validate([
+            'name'=>'required|max:255',
+            'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
+            'description'=>'required|max:255',
             'price'=>'required|numeric'
             
 

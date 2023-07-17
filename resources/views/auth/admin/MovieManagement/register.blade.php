@@ -20,15 +20,21 @@
                 <div class="col-md-6 grid-margin stretch-card">
                     <div class="card">
                           <div class="card-body">
-                            <h4 class="card-title">Default form</h4>
+                            <h4 class="card-title"></h4>
                             
                               <div class="form-group p-2">
                                 <label for="exampleInputUsername1">Nombre</label>
                                 <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username" name='name'>
+                                @error('name')
+                                <small>*{{$message}}</small> 
+                                @enderror
                               </div>
                               <div class="form-group p-2">
                                 <label for="exampleTextarea1">Descripcion</label>
                                 <textarea class="form-control" id="exampleTextarea1" rows="4" name='description'></textarea>
+                                @error('description')
+                                <small>*{{$message}}</small> 
+                                @enderror
                               </div>
 
                               
@@ -45,6 +51,9 @@
 
                                 <label for='img'>File upload</label>
                                 <input type="file" name="img" class="form-control" id='img'>
+                                @error('img')
+                                <small>*{{$message}}</small> 
+                                @enderror
 
                               </div>
                             
