@@ -39,14 +39,11 @@ Route::delete('admin/{movie}', [MovieController::class, 'delete'])->name('admin.
 
 
 Route::get('admin/confiteria', [App\Http\Controllers\Admin\ConfiteriaController::class, 'index'])->name('admin.confiteria')->middleware('Role');
-
 Route::get('admin/funcion', [App\Http\Controllers\Admin\FuncionController::class, 'index'])->name('admin.funcion')->middleware('Role');
 Route::get('admin/asiento', [App\Http\Controllers\Admin\AsientoController::class, 'index'])->name('admin.asiento')->middleware('Role');
 Route::get('admin/sala', [App\Http\Controllers\Admin\SalaController::class, 'index'])->name('admin.sala')->middleware('Role');
-
 Route::get('admin/venta', [App\Http\Controllers\Admin\VentaController::class, 'index'])->name('admin.venta')->middleware('Role');
 Route::get('admin/reserva', [App\Http\Controllers\Admin\ReservaController::class, 'index'])->name('admin.reserva')->middleware('Role');
-
 Route::get('admin/empleado', [App\Http\Controllers\Admin\EmpleadoController::class, 'index'])->name('admin.empleado')->middleware('Role');
 Route::get('admin/cliente', [App\Http\Controllers\Admin\ClienteController::class, 'index'])->name('admin.cliente')->middleware('Role');
 
@@ -54,6 +51,9 @@ Route::get('admin/cliente', [App\Http\Controllers\Admin\ClienteController::class
 
 //VISTA NORMAL PARA CLIENTES
 Route::get('user/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home');
+Route::get('user/compras', [App\Http\Controllers\User\HomeController::class, 'compras'])->name('compras.home');
+Route::get('user/reporte/{item}', [App\Http\Controllers\User\HomeController::class, 'reporte'])->name('reporte.home');
+
 //Route::get('user/candy', [App\Http\Controllers\User\HomeController::class, 'index2'])->name('user.candy');
 
 

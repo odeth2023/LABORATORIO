@@ -18,7 +18,7 @@
         <ul class="navigation">
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Cartelera</a></li>
-            <li><a href="" class='bg-danger'>Confitería</a></li>
+            <li><a href="">Confitería</a></li>
             <li><a href="#">Próximos Estrenos</a></li>
             
 
@@ -56,6 +56,10 @@
                                     </form>
                                 </div>
                             </li>
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('compras.home') }}">{{ __('Compras') }}</a>
+                            </li>
                         @endguest
                    
                 
@@ -87,8 +91,12 @@
     
     <div class="main-panel">
    <!-- Page-header start -->
-    @yield('content')
-        <p class="text-danger fs-2">Dentro del contenido</p>
+    
+        <div class='container'>
+            <p class="text-danger fs-2">Dentro del contenido</p>
+            @yield('content')
+        </div>
+        
     <!-- Page-header end -->
     </div>
 
