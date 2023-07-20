@@ -93,7 +93,7 @@
    <!-- Page-header start -->
     
         <div class='container'>
-            <p class="text-danger fs-2">Dentro del contenido</p>
+            
             @yield('content')
         </div>
         

@@ -52,7 +52,7 @@ Route::get('admin/cliente', [App\Http\Controllers\Admin\ClienteController::class
 //VISTA NORMAL PARA CLIENTES
 Route::get('user/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home');
 Route::get('user/compras', [App\Http\Controllers\User\HomeController::class, 'compras'])->name('compras.home');
-Route::get('user/reporte/{item}', [App\Http\Controllers\User\HomeController::class, 'reporte'])->name('reporte.home');
+Route::get('user/reporte', [App\Http\Controllers\User\HomeController::class, 'reporte'])->name('reporte.home');
 
 //Route::get('user/candy', [App\Http\Controllers\User\HomeController::class, 'index2'])->name('user.candy');
 
