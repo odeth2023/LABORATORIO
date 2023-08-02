@@ -40,8 +40,15 @@ Route::put('admin/{movie}-editando', [MovieController::class, 'update'])->name('
 Route::delete('admin/{movie}', [MovieController::class, 'delete'])->name('admin.MovieManagement.delete');//Actualizando datos
 
 
-
+//Confiteria
 Route::get('admin/confiteria', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'index'])->name('admin.confiteria')->middleware('Role');
+Route::get('admin/registroPelicula', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'register'])->name('admin.confiteria.register')->middleware('Role');
+
+
+
+
+
+
 Route::get('admin/funcion', [App\Http\Controllers\Admin\MovieshowController::class, 'index'])->name('admin.funcion')->middleware('Role');
 Route::get('admin/asiento', [App\Http\Controllers\Admin\SeatController::class, 'index'])->name('admin.asiento')->middleware('Role');
 Route::get('admin/sala', [App\Http\Controllers\Admin\RoomController::class, 'index'])->name('admin.sala')->middleware('Role');
