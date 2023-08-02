@@ -33,8 +33,10 @@ Route::get('admin/SubCategorias', [App\Http\Controllers\Admin\CategorychildContr
 //PELICULA
 Route::resource("/movie", MovieController::class);
 Route::get('admin/peliculas', [MovieController::class, 'index'])->name('admin.MovieManagement.movie')->middleware('Role');
-Route::get('admin/registroPelicula', [MovieController::class, 'register'])->name('admin.MovieManagement.register')->middleware('Role');//vista crear
+
+Route::get('admin/registroPelicula', [MovieController::class, 'register'])->name('admin.movie.vistaregistro');//vista crear
 Route::post('admin/registrandoPelicula', [MovieController::class, 'store'])->name('admin.movie.register');//creando
+
 Route::get('admin/{movie}-edit', [MovieController::class, 'edit'])->name('admin.MovieManagement.edit');//mostrando edit con datos
 Route::put('admin/{movie}-editando', [MovieController::class, 'update'])->name('admin.MovieManagement.update');//Actualizando datos
 Route::delete('admin/{movie}', [MovieController::class, 'delete'])->name('admin.MovieManagement.delete');//Actualizando datos
@@ -42,7 +44,7 @@ Route::delete('admin/{movie}', [MovieController::class, 'delete'])->name('admin.
 
 //Confiteria
 Route::get('admin/confiteria', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'index'])->name('admin.confiteria')->middleware('Role');
-Route::get('admin/registroPelicula', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'register'])->name('admin.confiteria.register')->middleware('Role');
+Route::get('admin/registroConfiteria', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'register'])->name('admin.confiteria.register')->middleware('Role');
 
 
 

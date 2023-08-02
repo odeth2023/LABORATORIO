@@ -8,7 +8,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <button type="button" class="btn btn-primary">
-                    <a href="{{route('admin.MovieManagement.register')}}" class='text-decoration-none text-light'>Nuevo</a> 
+                    <a href="{{route('admin.movie.vistaregistro')}}" class='text-decoration-none text-light'>Nuevo</a> 
                   </button>
                 </ol>
               </nav>

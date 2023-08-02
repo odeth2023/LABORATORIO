@@ -26,6 +26,7 @@ class MovieController extends Controller
     {   
         $categorychild = Categorychild::all();
         return view('auth.admin.MovieManagement.register')->with('categorychild', $categorychild);
+       
     
     }
 
