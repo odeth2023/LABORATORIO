@@ -34,7 +34,7 @@
                               <div class="row p-2">
                                 <div class="col-md-12 form-group">
                                     <label for="exampleInputUsername1">Nombre</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de pelicula" name='name'>
+                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de producto" name='name'>
                                     @error('name')
                                     <small>*{{$message}}</small> 
                                     @enderror

@@ -8,7 +8,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <button type="button" class="btn btn-primary">
-                    <a href="" class='text-decoration-none text-light'>Nuevo</a> 
+                    <a href="{{route('admin.confiteria.register')}}" class='text-decoration-none text-light'>Nuevo</a> 
                   </button>
                 </ol>
               </nav>
@@ -46,7 +46,7 @@
             @foreach ($product as $item)
                 <tr>
                     <td>
-                        {{ $item->idMovie }}
+                        {{ $item->idConfectionery}}
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
