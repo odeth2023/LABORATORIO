@@ -14,7 +14,7 @@
 
                     <h5 class="m-b-10">BIENVENIDO admin- {{ Auth::user()->name }}</h5>
                     
-                   
+                    {{ Auth::user()->id }}
 
                 </div>
 

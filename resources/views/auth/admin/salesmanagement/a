@@ -1,0 +1,72 @@
+@foreach ($producto as $indice=>$item)
+          @foreach ($carrito as $item2)
+          @if ($item['name'] == $item2->name) 
+
+            @dd($item,'exito');
+            <p>{{$item['name']}}</p>    
+            
+          @endif
+            
+          @endforeach 
+        @endforeach  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@php
+        for ($i=0; $i < count($carrito) ; $i++){
+            dd($i);
+        }
+        @endphp
+
+        @foreach ($carrito as $indice => $item2)
+        @dd($item2->name,$producto['name']);
+        @endforeach 
+
+
+        @foreach ($producto as $indice => $item)
+        @php
+        
+          $result = array_search($item, $carrito);
+          dd($result);
+        @endphp
+        @endforeach  
+
+
+        @foreach ($producto as $indice => $item)
+        @php
+          $result = array_intersect($item, $carrito);
+          @dd($result);
+        @endphp
+        @endforeach  
+
+        @foreach ($producto as $indice => $item)
+          @if(in_array($item['name'], $carrito)) {
+              @dd($item);
+          }
+          @endif
+        @endforeach  
+
+
+        @if(in_array($producto, $carrito)) {
+            @dd($producto);
+        }
+        @endif
+
+        @foreach ($carrito as $item)
+         <p>{{$item['name']}}</p>
+        @endforeach 
+            
+        @foreach ($producto as $item)
+         <p>{{$item['name']}}</p>
+        @endforeach  

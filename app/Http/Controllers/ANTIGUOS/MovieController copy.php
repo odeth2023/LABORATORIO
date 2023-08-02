@@ -102,7 +102,10 @@ class MovieController extends Controller
    
     public function edit(Movie $movie)
     {
-        
+        //$movie = Movie::find($id);
+        //return $movie;
+        //$categorychild = Categorychild::find($movie);
+        //dd($categorychild);
         $categorychild = Categorychild::all();
 
         $movie2 = Movie::join('categorychild', 'categorychild.idCategorychild', '=', 'movie.idCategorychild')
@@ -112,6 +115,24 @@ class MovieController extends Controller
         ->where('movie.idMovie', '=', $movie->idMovie)          
         ->get();
 
+        //dd( $movie2);
+
+        /*$movie1 = Movie::select('movie.idMovie','movie.name','movie.img','movie.description',
+        'movie.duracion','movie.price','movie.state','movie.billboard','movie.idCategoryChild')   
+        ->where('movie.idMovie', '=', $movie->idMovie)      
+        ->get();*/
+
+        
+
+        /*return view('auth.admin.MovieManagement.show_edit', [
+            'pelicula' => $movie
+        ]);*/
+        
+        
+        //Los datos enviados se almacenaran en una variable llamada movie
+       /* return view('auth.admin.MovieManagement.show_edit',compact('movie'))->with('categorychild', $categorychild);*/
+    
+       
        return view('auth.admin.MovieManagement.show_edit',compact('movie'))->with('movie2', $movie2)->with('categorychild', $categorychild);
     }
 
@@ -119,16 +140,16 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         
-        $request->validate([
+        /*$request->validate([
             'name'=>'required|max:255',
             'img'=>'image|mimes:jpg,jpeg,png|max:20000',
             'description'=>'required|max:255',
             'duracion'=>'required|max:8',
             'price'=>'required|numeric',
-            'idCategoryChild'=>'required'
+            'categoryChild'=>'required'
             
 
-        ]);
+        ]);*/
 
         //hasfile=para preguntar si viene con ese archivo (el nombre que indico 'img')
         //te dice sabes que tu formulario si viene con este archivo
@@ -164,12 +185,12 @@ class MovieController extends Controller
         }
 
         $movie->description=$request->description;
-        $movie->duracion=$request->duracion;
+        $newMovie->duracion=$request->duracion;
         $movie->price=$request->price;
         $movie->state=0;
         $movie->billboard=0;
-        $movie->idCategoryChild=$request->idCategoryChild;
-        
+        $newMovie->categoryChild=$request->categoryChild;
+
         //Nota: recordar que los datos(variables) se encuentran en el orden de los mismos en la tabla de la bd
         $movie->save();
 
@@ -183,12 +204,7 @@ class MovieController extends Controller
     public function delete(Request $request, $movieid)
     {
         //dd($movieid);
-        
         $movieid=Movie::find($movieid);
-        if($movieid->img != '')
-            {   //Sirve para eliminar la img antigua y sobreescribir por la nueva
-                unlink($movieid->img);
-            }
         $movieid->delete();
         
         

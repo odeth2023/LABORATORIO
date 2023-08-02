@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("img");
             $table->string("description");
+            $table->string("duracion");
             $table->float("price");
             $table->char("state");
             $table->char("billboard");
