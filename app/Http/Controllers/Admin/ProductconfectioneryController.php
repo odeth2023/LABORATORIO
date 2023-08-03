@@ -81,19 +81,19 @@ class ProductconfectioneryController extends Controller
 
     public function edit(Productconfectionery $item)
     {
-        dd($item);
-        /*$categorychild = Categorychild::all();
+        //dd($item);
+        $categorychild = Categorychild::all();
 
         $productconfectionery2 = Productconfectionery::join('categorychild', 'categorychild.idCategorychild', '=', 'productconfectionery.idCategorychild')
         ->select('productconfectionery.*', 'productconfectionery.name as pName','productconfectionery.description as pdescripcion','productconfectionery.idCategoryChild as idTipoCategoria',
                  'categorychild.name as NombreTipoCategoria', 'productconfectionery.price as precio','productconfectionery.quantity as pquantity',
                  'productconfectionery.img as img')  
-        ->where('productconfectionery.idConfectionery', '=', $productconfectionery->idConfectionery)          
-        ->get();*/
+        ->where('productconfectionery.idConfectionery', '=', $item->idConfectionery)          
+        ->get();
         
 
-       //return view('auth.admin.productconfectioneryM.show_edit',compact('productconfectionery'))->with('productconfectionery2', $productconfectionery2)->with('categorychild', $categorychild);
-       return view('auth.admin.productconfectioneryM.show_edit',compact('p'));
+       return view('auth.admin.productconfectioneryM.show_edit',compact('item'))->with('productconfectionery2', $productconfectionery2)->with('categorychild', $categorychild);
+       //return view('auth.admin.productconfectioneryM.show_edit',compact('p'));
     
     }
 

@@ -35,7 +35,7 @@
                               <div class="row p-2">
                                 <div class="col-md-12 form-group">
                                     <label for="exampleInputUsername1">Nombre</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de producto" name='name'  value="{{$p->name}}">
+                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de producto" name='name'  value="{{$item->name}}">
                                     @error('name')
                                     <small>*{{$message}}</small> 
                                     @enderror
@@ -43,7 +43,7 @@
 
                                 <div class="col-md-6 form-group p-2">
                                     <label for="exampleTextarea1">Descripcion</label>
-                                    <textarea class="form-control" id="exampleTextarea1"  name='description'>{{$p->description}}</textarea>
+                                    <textarea class="form-control" id="exampleTextarea1"  name='description'>{{$item->description}}</textarea>
                                     @error('description')
                                     <small>*{{$message}}</small> 
                                     @enderror
