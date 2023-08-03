@@ -6,60 +6,49 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //Llamamos a el modelo movie el cual importara el modelo de la tabla
 use App\Models\Movie;
+use App\Models\Productconfectionery;
 use App\Models\Categorychild;
 
 use Illuminate\Support\Facades\Storage;
 
-
-class MovieController extends Controller
+class ProductconfectioneryController extends Controller
 {
-    
     public function index()
     {
-        //colocamos una variable para el modelo y luego el nombre como lo llamaremos para listar
-        $movie = Movie::all();
-        return view('auth.admin.MovieManagement.movie')->with('movie', $movie);
+        $product = Productconfectionery::all();
+        return view('auth.admin.productconfectioneryM.productconfectionery')->with('product', $product);
     }
-
 
     public function register()
     {   
         $categorychild = Categorychild::all();
-        return view('auth.admin.MovieManagement.register')->with('categorychild', $categorychild);
-       
+        return view('auth.admin.productconfectioneryM.register')->with('categorychild', $categorychild);
     
     }
 
-
-    public function create()
-    {
-        //
-    }
-    
-
-   
     public function store(Request $request)
     {
         $request->validate([
             'name'=>'required|max:255',
-            'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
             'description'=>'required|max:255',
-            'duracion'=>'required|max:8',
+            'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
             'price'=>'required|numeric',
+            'quantity'=>'required|numeric',
             'idCategoryChild'=>'required'
 
         ]);
 
 
         //un onjeto del modelo movie
-        $newMovie= new Movie();
+        $newProducto= new Productconfectionery();
 
         //hasfile=para preguntar si viene con ese archivo (el nombre que indico 'img')
         //te dice sabes que tu formulario si viene con este archivo
         //en caso de que no lo subamos (la img) te dira falso
         //dd($request->hasFile('img'));
 
-        $newMovie->name=$request->name;
+        $newProducto->name=$request->name;
+        $newProducto->description=$request->description;
 
         //Proceso de subida de img
         if($request->hasFile('img')){
@@ -72,77 +61,58 @@ class MovieController extends Controller
             //moviendo img hacia la carpeta
             $uploadSuccess=$request->file('img')->move($carpetaDestino,$filename);
             //Guardando los datos de la nueba img carpeta de destino + el nombre en la bd
-            $newMovie->img=$carpetaDestino.$filename;
+            $newProducto->img=$carpetaDestino.$filename;
         }
 
-        $newMovie->description=$request->description;
-        $newMovie->duracion=$request->duracion;
-        $newMovie->price=$request->price;
-        $newMovie->state=0;
-        $newMovie->billboard=0;
-        $newMovie->idCategoryChild=$request->idCategoryChild;
+        $newProducto->price=$request->price;
+        $newProducto->quantity=$request->quantity;
+        $newProducto->state=0;
+        $newProducto->idCategoryChild=$request->idCategoryChild;
 
         //Nota: recordar que los datos(variables) se encuentran en el orden de los mismos en la tabla de la bd
-        $newMovie->save();
+        $newProducto->save();
 
         //$this->emit("alert");
 
         //return view('auth.admin.MovieManagement.movie')->with('crear','ok');
 
-        return redirect()->route('admin.MovieManagement.movie')->with('crear','ok');
+        return redirect()->route('admin.confiteria')->with('crear','ok');
 
     }
 
-   
-    //MOSTRAR DATOS DE PELICULA POR ID
-    public function show($id)
+    public function edit(Productconfectionery $productconfectionery)
     {
-        //
-    }
-
-   
-    public function edit(Movie $movie)
-    {
-        //dd($movie);
         $categorychild = Categorychild::all();
 
-        $movie2 = Movie::join('categorychild', 'categorychild.idCategorychild', '=', 'movie.idCategorychild')
-        ->select('movie.*', 'movie.name as movieName','movie.description as descripcion','movie.idCategoryChild as idTipoCategoria',
-                 'categorychild.name as NombreTipoCategoria', 'movie.price as precio','movie.duracion as duracion',
-                 'movie.img as img')  
-        ->where('movie.idMovie', '=', $movie->idMovie)          
+        $productconfectionery2 = Productconfectionery::join('categorychild', 'categorychild.idCategorychild', '=', 'productconfectionery.idCategorychild')
+        ->select('productconfectionery.*', 'productconfectionery.name as pName','productconfectionery.description as pdescripcion','productconfectionery.idCategoryChild as idTipoCategoria',
+                 'categorychild.name as NombreTipoCategoria', 'productconfectionery.price as precio','productconfectionery.quantity as pquantity',
+                 'productconfectionery.img as img')  
+        ->where('productconfectionery.idConfectionery', '=', $productconfectionery->idConfectionery)          
         ->get();
+        
 
-        //dd($movie);
-
-       return view('auth.admin.MovieManagement.show_edit',compact('movie'))->with('movie2', $movie2)->with('categorychild', $categorychild);
+       //return view('auth.admin.productconfectioneryM.show_edit',compact('productconfectionery'))->with('productconfectionery2', $productconfectionery2)->with('categorychild', $categorychild);
+       return view('auth.admin.productconfectioneryM.show_edit',compact('productconfectionery'));
+    
     }
 
-  
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, Productconfectionery $productconfectionery)
     {
         
         $request->validate([
             'name'=>'required|max:255',
-            'img'=>'image|mimes:jpg,jpeg,png|max:20000',
             'description'=>'required|max:255',
-            'duracion'=>'required|max:8',
+            'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
             'price'=>'required|numeric',
+            'quantity'=>'required|numeric',
             'idCategoryChild'=>'required'
             
 
         ]);
 
-        //hasfile=para preguntar si viene con ese archivo (el nombre que indico 'img')
-        //te dice sabes que tu formulario si viene con este archivo
-        //en caso de que no lo subamos (la img) te dira falso
-        //dd($request->hasFile('img'));
-
-        
-        
-
-        $movie->name=$request->name;
-
+        $productconfectionery->name=$request->name;
+        $productconfectionery->description=$request->description;
         //Proceso de subida de img
         //Preguntamos si tiene fotografia en la carga
         if($request->hasFile('img')){
@@ -155,46 +125,29 @@ class MovieController extends Controller
             //moviendo img hacia la carpeta
             $uploadSuccess=$request->file('img')->move($carpetaDestino,$filename);
 
-            if($movie->img != '')
+            if($productconfectionery->img != '')
             {   //dd($ruta);
                 
                 //Sirve para eliminar la img antigua y sobreescribir por la nueva
-                unlink($movie->img);
+                unlink($productconfectionery->img);
             }
 
             //Guardando los datos de la nueva img en la carpeta de destino + el nombre en la bd
-            $movie->img=$carpetaDestino.$filename;
+            $productconfectionery->img=$carpetaDestino.$filename;
         }
 
-        $movie->description=$request->description;
-        $movie->duracion=$request->duracion;
-        $movie->price=$request->price;
-        $movie->state=0;
-        $movie->billboard=0;
-        $movie->idCategoryChild=$request->idCategoryChild;
         
+        $productconfectionery->price=$request->price;
+        $productconfectionery->quantity=$request->quantity;
+        $productconfectionery->state=0;
+        $productconfectionery->idCategoryChild=$request->idCategoryChild;
+
         //Nota: recordar que los datos(variables) se encuentran en el orden de los mismos en la tabla de la bd
-        $movie->save();
+        $productconfectionery->save();
 
         //return redirect()->route("admin.MovieManagement.movie");
-        return redirect()->route('admin.MovieManagement.movie')->with('editar','ok');
+        return redirect()->route('admin.confiteria')->with('editar','ok');
 
         //return $movie;
-    }
-
-  
-    public function delete(Request $request, $movieid)
-    {
-        //dd($movieid);
-        
-        $movieid=Movie::find($movieid);
-        if($movieid->img != '')
-            {   //Sirve para eliminar la img antigua y sobreescribir por la nueva
-                unlink($movieid->img);
-            }
-        $movieid->delete();
-        
-        
-        return redirect()->back()->with('eliminar','oki');
     }
 }

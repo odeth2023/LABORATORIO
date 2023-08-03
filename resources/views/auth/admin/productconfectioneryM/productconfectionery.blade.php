@@ -8,7 +8,7 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <button type="button" class="btn btn-primary">
-                    <a href="{{route('admin.confiteria.register')}}" class='text-decoration-none text-light'>Nuevo</a> 
+                    <a href="{{route('admin.confiteria.vistaregistro')}}" class='text-decoration-none text-light'>Nuevo</a> 
                   </button>
                 </ol>
               </nav>
@@ -82,15 +82,17 @@
 
                     <!--BOTONES CRUD-->
                     <td colspan="2">
-                        <a href=""
-                            class='text-decoration-none text-light'>
+                        
+                                                 
+                        <a href="{{ route('admin.confiteria.edit', $item) }}" class='text-decoration-none text-light'>
+                        
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pen-fill"></i>
                             </button>
                         </a>
                         
                         <div>
-                            <form action="" method="POST" class='text-light' id='formulario-eliminar'>
+                            <form action="{{ route('admin.confiteria.delete', $item->idConfectionery) }}" method="POST" class='text-light' id='formulario-eliminar'>
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <button type="submit"
@@ -130,3 +132,75 @@
 @endsection
 
 
+@section('js')
+
+
+@if (session('crear')=='ok')
+    <script type='text/javascript'>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has creado un producto',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+
+@endif
+
+@if (session('editar')=='ok')
+    <script type='text/javascript'>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Has editado un producto',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+
+@endif
+
+@if (session('eliminar')=='oki')
+    <script type='text/javascript'>
+       Swal.fire(
+      'Eliminado',
+      'Has eliminado un producto',
+      'success'
+    )
+    </script>
+
+@endif
+
+<script type='text/javascript'>
+    
+    document.getElementById("formulario-eliminar").addEventListener("submit", function(event){
+            
+        event.preventDefault()
+        Swal.fire({
+            title: '¿Desea eliminar?',
+            text: "Una vez eliminado no recuperarás los datos",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.value) {
+                /*Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )*/
+                this.submit();
+            }
+        })
+
+
+    });
+
+        
+    
+</script>
+@endsection

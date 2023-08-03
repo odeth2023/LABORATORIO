@@ -9,7 +9,7 @@ class Productconfectionery extends Model
 {
     protected $table = 'productconfectionery';
     protected $primaryKey ='idConfectionery';
-    protected $fillable = ['name','price','quantity','state','idCategoryChild'];
+    protected $fillable = ['name','description','img','price','quantity','state','idCategoryChild'];
     use HasFactory;
 
     

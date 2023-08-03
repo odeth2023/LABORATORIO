@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //Llamamos a el modelo movie el cual importara el modelo de la tabla
-use App\Models\Movie;
 use App\Models\Productconfectionery;
 use App\Models\Categorychild;
 
@@ -16,13 +15,13 @@ class ProductconfectioneryController extends Controller
     public function index()
     {
         $product = Productconfectionery::all();
-        return view('auth.admin.productconfectionerymanagement.productconfectionery')->with('product', $product);
+        return view('auth.admin.productconfectioneryM.productconfectionery')->with('product', $product);
     }
 
     public function register()
     {   
         $categorychild = Categorychild::all();
-        return view('auth.admin.productconfectionerymanagement.register')->with('categorychild', $categorychild);
+        return view('auth.admin.productconfectioneryM.register')->with('categorychild', $categorychild);
     
     }
 
@@ -30,6 +29,7 @@ class ProductconfectioneryController extends Controller
     {
         $request->validate([
             'name'=>'required|max:255',
+            'description'=>'required|max:255',
             'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
             'price'=>'required|numeric',
             'quantity'=>'required|numeric',
@@ -47,6 +47,7 @@ class ProductconfectioneryController extends Controller
         //dd($request->hasFile('img'));
 
         $newProducto->name=$request->name;
+        $newProducto->description=$request->description;
 
         //Proceso de subida de img
         if($request->hasFile('img')){
@@ -59,11 +60,11 @@ class ProductconfectioneryController extends Controller
             //moviendo img hacia la carpeta
             $uploadSuccess=$request->file('img')->move($carpetaDestino,$filename);
             //Guardando los datos de la nueba img carpeta de destino + el nombre en la bd
-            $newMovie->img=$carpetaDestino.$filename;
+            $newProducto->img=$carpetaDestino.$filename;
         }
 
         $newProducto->price=$request->price;
-        $newProducto->price=$request->quantity;
+        $newProducto->quantity=$request->quantity;
         $newProducto->state=0;
         $newProducto->idCategoryChild=$request->idCategoryChild;
 
@@ -74,7 +75,40 @@ class ProductconfectioneryController extends Controller
 
         //return view('auth.admin.MovieManagement.movie')->with('crear','ok');
 
-        return redirect()->route('admin.MovieManagement.movie')->with('crear','ok');
+        return redirect()->route('admin.confiteria')->with('crear','ok');
 
+    }
+
+    public function edit(Productconfectionery $item)
+    {
+        dd($item);
+        /*$categorychild = Categorychild::all();
+
+        $productconfectionery2 = Productconfectionery::join('categorychild', 'categorychild.idCategorychild', '=', 'productconfectionery.idCategorychild')
+        ->select('productconfectionery.*', 'productconfectionery.name as pName','productconfectionery.description as pdescripcion','productconfectionery.idCategoryChild as idTipoCategoria',
+                 'categorychild.name as NombreTipoCategoria', 'productconfectionery.price as precio','productconfectionery.quantity as pquantity',
+                 'productconfectionery.img as img')  
+        ->where('productconfectionery.idConfectionery', '=', $productconfectionery->idConfectionery)          
+        ->get();*/
+        
+
+       //return view('auth.admin.productconfectioneryM.show_edit',compact('productconfectionery'))->with('productconfectionery2', $productconfectionery2)->with('categorychild', $categorychild);
+       return view('auth.admin.productconfectioneryM.show_edit',compact('p'));
+    
+    }
+
+    public function delete(Request $request, $productoid)
+    {
+        //dd($movieid);
+        
+        $productoid=Productconfectionery::find($productoid);
+        if($productoid->img != '')
+            {   //Sirve para eliminar la img antigua y sobreescribir por la nueva
+                unlink($productoid->img);
+            }
+        $productoid->delete();
+        
+        
+        return redirect()->back()->with('eliminar','oki');
     }
 }

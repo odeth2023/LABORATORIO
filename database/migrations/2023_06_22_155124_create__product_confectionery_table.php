@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('ProductConfectionery', function (Blueprint $table) {
             $table->id("idConfectionery");
             $table->string("name");
+            $table->string("description");
+            $table->string("img");
             $table->float("price");
             $table->integer("quantity");
             $table->char("state");

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\ProductconfectioneryController;
 use App\Http\Controllers\Admin\SaleController;
 
 /*
@@ -31,20 +32,22 @@ Route::get('admin/SubCategorias', [App\Http\Controllers\Admin\CategorychildContr
 
 
 //PELICULA
-Route::resource("/movie", MovieController::class);
+//Route::resource("/movie", MovieController::class);
 Route::get('admin/peliculas', [MovieController::class, 'index'])->name('admin.MovieManagement.movie')->middleware('Role');
-
 Route::get('admin/registroPelicula', [MovieController::class, 'register'])->name('admin.movie.vistaregistro');//vista crear
 Route::post('admin/registrandoPelicula', [MovieController::class, 'store'])->name('admin.movie.register');//creando
-
 Route::get('admin/{movie}-edit', [MovieController::class, 'edit'])->name('admin.MovieManagement.edit');//mostrando edit con datos
 Route::put('admin/{movie}-editando', [MovieController::class, 'update'])->name('admin.MovieManagement.update');//Actualizando datos
-Route::delete('admin/{movie}', [MovieController::class, 'delete'])->name('admin.MovieManagement.delete');//Actualizando datos
+Route::delete('admin/{movie}', [MovieController::class, 'delete'])->name('admin.MovieManagement.delete');//eliminando datos
 
 
-//Confiteria
-Route::get('admin/confiteria', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'index'])->name('admin.confiteria')->middleware('Role');
-Route::get('admin/registroConfiteria', [App\Http\Controllers\Admin\ProductconfectioneryController::class, 'register'])->name('admin.confiteria.register')->middleware('Role');
+//CONFITERIA
+Route::get('admin/confiteria', [ProductconfectioneryController::class, 'index'])->name('admin.confiteria')->middleware('Role');
+Route::get('admin/registroConfiteria', [ProductconfectioneryController::class, 'register'])->name('admin.confiteria.vistaregistro')->middleware('Role');
+Route::post('admin/registrandoConfiteria', [ProductconfectioneryController::class, 'store'])->name('admin.confiteria.register')->middleware('Role');//creando
+Route::get('adminVistaEditar/{item}', [ProductconfectioneryController::class, 'edit'])->name('admin.confiteria.edit');//mostrando edit con datos
+//Route::put('admin/{producto}-editandoP', [ProductconfectioneryController::class, 'update'])->name('admin.confiteria.update')->middleware('Role');//Actualizando datos
+Route::delete('adminBorrandoProducto/{producto}', [ProductconfectioneryController::class, 'delete'])->name('admin.confiteria.delete');//eliminando datos
 
 
 
