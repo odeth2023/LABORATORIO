@@ -1,12 +1,10 @@
 @extends('layouts.masterpage')
 
 @section('content')
-@php
-session()->forget('eliminar');
-@endphp
+
 
             <div class="page-header">
-              <h3 class="page-title">Categorías Principales</h3>
+              <h3 class="page-title">SubCategorías</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
 
@@ -16,16 +14,31 @@ session()->forget('eliminar');
 
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <form class="forms-sample" action="{{route('admin.categoriaPadre.register')}}" method='POST' enctype='multipart/form-data'>
+                        <form class="forms-sample" action="{{route('admin.categorychild.register')}}" method='POST' enctype='multipart/form-data'>
                             {{csrf_field()}}
                         
-                            <div class="modal-dialog  modal-dialog-scrollable">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva categoría</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva sub-categoría</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
+
+
                                 <div class="modal-body">
+                                    <div class="col-12 mb-4">
+                                        <label for="inputState" class="form-label">Categoría</label>
+                                        <select name='CategoryParent' id="inputState" class="form-select">
+                                            <option value="" selected>Seleccionar..</option>
+                                            @foreach ($cp as $item)  
+                                            <option value="{{ $item->idCategoryParent}}">{{ $item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('CategoryParent')
+                                            <small>*{{$message}}</small> 
+                                        @enderror
+                                    </div>
+
                                     <div class="col-md-12 form-group">
                                         <label for="exampleInputUsername1">Nombre</label>
                                         <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='name'>
@@ -75,13 +88,13 @@ session()->forget('eliminar');
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($c as $item)
+                                @foreach ($c2 as $item)
                                     <tr>
                                         <td>
-                                            {{ $item->idCategoryParent }}
+                                            {{ $item->id }}
                                         </td>
                                         <td>
-                                            <p class="fw-normal mb-1">{{ $item->name }}</p>
+                                            <p class="fw-normal mb-1">{{ $item->ccName }}</p>
                                         </td>
 
                                         
@@ -89,13 +102,13 @@ session()->forget('eliminar');
                                         <!--BOTONES CRUD-->
                                         <td colspan="2" class='d-flex flex-wrap gap-2'>
                                             
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar-{{ $item->idCategoryParent }}">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar-{{$item->id}}">
                                                 <i class="bi bi-pen-fill"></i>
                                             </button>
 
                                                 <!-- Modal -->
-                                            <div class="modal fade" id="editar-{{$item->idCategoryParent}}"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                    <form class="forms-sample" action="{{route('admin.categoriaPadre.update',$item)}}" method='POST' enctype='multipart/form-data'>
+                                            <div class="modal fade" id="editar-{{$item->id}}"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <form class="forms-sample" action="{{route('admin.categorychild.update',$item)}}" method='POST' enctype='multipart/form-data'>
                                                         {{csrf_field()}}
                                                         @method('put')
                                                     
@@ -106,9 +119,28 @@ session()->forget('eliminar');
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
+
+                                                                <div class="col-12 mb-4 form-group">
+                                                                    <label for="inputState" class="form-label">Categoría</label>
+                                                                    <select name='CategoryParent' id="inputState" class="form-select">
+                                                                        <option value="{{$item->idCP}}" selected>{{ $item->cpName}}</option>
+                                                                       
+                                                                        @foreach ($cp as $item2)  
+                                                                            @if($item2->idCategoryParent==$item->idCP)
+                                                                            @continue;
+                                                                            
+                                                                            @else
+                                                                            <option value="{{ $item2->idCategoryParent}}">{{ $item2->name}}</option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                        
+                                                                        
+                                                                    </select>
+                                                                </div>
+
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="exampleInputUsername1">Nombre</label>
-                                                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='name' value='{{ $item->name }}'>
+                                                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='name' value='{{$item->name}}'>
                                                                     @error('name')
                                                                     <small>*{{$message}}</small> 
                                                                     @enderror
@@ -130,7 +162,7 @@ session()->forget('eliminar');
 
 
                                             <div>
-                                                <form action="{{ route('admin.categoriaPadre.delete', $item->idCategoryParent ) }}" method="POST" class='text-light' id='formulario-eliminar'>
+                                                <form action="{{ route('admin.categorychild.delete', $item->id) }}" method="POST" class='text-light' id='formulario-eliminar'>
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
                                                     <button type="submit"
@@ -181,7 +213,7 @@ session()->forget('eliminar');
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Has creado una categoría',
+            title: 'Has creado una Sub-categoría',
             showConfirmButton: false,
             timer: 1500
         })
@@ -199,7 +231,7 @@ session()->forget('crear');
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Has editado una categoría',
+            title: 'Has editado una Sub-categoría',
             showConfirmButton: false,
             timer: 1500
         })
@@ -211,7 +243,7 @@ session()->forget('crear');
     <script type='text/javascript'>
        Swal.fire(
       'Eliminado',
-      'Has eliminado una categoría',
+      'Has eliminado una Sub-categoría',
       'success'
     )
     </script>

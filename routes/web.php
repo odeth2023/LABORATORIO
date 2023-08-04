@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\ProductconfectioneryController;
 use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\CategoryparentController;
+use App\Http\Controllers\Admin\CategorychildController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,16 +27,20 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\Auth\HomeController::class, 'index'])->name('auth.home')->middleware('Role');
 
 //CATEGORIAS PRINCIPALES
-Route::get('admin/CategoriaMaster3', [CategoryparentController::class, 'index'])->name('admin.categoriaPadre.principal')->middleware('Role');
+Route::get('admin/CategoriaMaster', [CategoryparentController::class, 'index'])->name('admin.categoriaPadre.principal')->middleware('Role');
+Route::post('admin/registrandoCategoriaM', [CategoryparentController::class, 'store'])->name('admin.categoriaPadre.register')->middleware('Role');//creando
+Route::put('admin/{item}-editandoCategoriaM', [CategoryparentController::class, 'update'])->name('admin.categoriaPadre.update')->middleware('Role');//Actualizando datos
+Route::delete('adminBorrandoCategoriaM/{item}', [CategoryparentController::class, 'delete'])->name('admin.categoriaPadre.delete')->middleware('Role');//eliminando datos
 
 
 
+//SUBCATEGORIAS
+Route::get('admin/SubCategorias', [CategorychildController::class, 'index'])->name('admin.categorychild.principal')->middleware('Role');
+Route::post('admin/registrandoSubCategoria', [CategorychildController::class, 'store'])->name('admin.categorychild.register')->middleware('Role');//creando
+Route::put('admin/{item}-editandoSubCategoria', [CategorychildController::class, 'update'])->name('admin.categorychild.update')->middleware('Role');//Actualizando datos
+Route::delete('adminBorrandoSubCategoria/{item}', [CategorychildController::class, 'delete'])->name('admin.categorychild.delete')->middleware('Role');//eliminando datos
 
 
-
-
-
-Route::get('admin/SubCategorias', [App\Http\Controllers\Admin\CategorychildController::class, 'index'])->name('admin.categoriaHija')->middleware('Role');
 
 //Route::get('/admin/pelicula', [PeliculaController::class, 'index'])->name('admin.MovieManagement.movie')->middleware('Role');
 //Route::get('/admin/registroPelicula', [PeliculaController::class, 'index2'])->name('admin.MovieManagement.register')->middleware('Role');
