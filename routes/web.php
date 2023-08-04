@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('auth/home', [App\Http\Controllers\Auth\HomeController::class, 'index'])->name('auth.home')->middleware('Role');
+Route::get('/home', [App\Http\Controllers\Auth\HomeController::class, 'index'])->name('auth.home')->middleware('Role');
 
 Route::get('admin/CategoriaMaster', [App\Http\Controllers\Admin\CategoryparentController::class, 'index'])->name('admin.categoriaPadre')->middleware('Role');
 Route::get('admin/SubCategorias', [App\Http\Controllers\Admin\CategorychildController::class, 'index'])->name('admin.categoriaHija')->middleware('Role');
