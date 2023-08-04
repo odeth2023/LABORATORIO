@@ -90,11 +90,61 @@ class ProductconfectioneryController extends Controller
                  'productconfectionery.img as img')  
         ->where('productconfectionery.idConfectionery', '=', $item->idConfectionery)          
         ->get();
-        
+        //dd($productconfectionery2);
 
        return view('auth.admin.productconfectioneryM.show_edit',compact('item'))->with('productconfectionery2', $productconfectionery2)->with('categorychild', $categorychild);
        //return view('auth.admin.productconfectioneryM.show_edit',compact('p'));
     
+    }
+
+
+    public function update(Request $request, Productconfectionery $item)
+    {
+        $request->validate([
+            'name'=>'required|max:255',
+            'description'=>'required|max:255',
+            'img'=>'image|mimes:jpg,jpeg,png|max:20000',
+            'price'=>'required|numeric',
+            'quantity'=>'required|numeric',
+            'idCategoryChild'=>'required'
+        ]);
+
+        $item->name=$request->name;
+        $item->description=$request->description;
+        //Proceso de subida de img
+        //Preguntamos si tiene fotografia en la carga
+        if($request->hasFile('img')){
+            $file=$request->file('img');
+            $carpetaDestino='assets/images/pictures/';
+            //time: nos trae un string, que en realidad es una marca de tiempo
+            //con esto se evita que aparesca el nombre repetido, al tiempo le concatemos un string, el guion
+            //y el nombre de la img original
+            $filename=time().'-'.$file->getClientOriginalName();
+            //moviendo img hacia la carpeta
+            $uploadSuccess=$request->file('img')->move($carpetaDestino,$filename);
+
+            if($item->img != '')
+            {   //dd($ruta);
+                
+                //Sirve para eliminar la img antigua y sobreescribir por la nueva
+                unlink($item->img);
+            }
+
+            //Guardando los datos de la nueva img en la carpeta de destino + el nombre en la bd
+            $item->img=$carpetaDestino.$filename;
+        }
+
+        
+        $item->price=$request->price;
+        $item->quantity=$request->quantity;
+        $item->state=0;
+        $item->idCategoryChild=$request->idCategoryChild;
+
+        //Nota: recordar que los datos(variables) se encuentran en el orden de los mismos en la tabla de la bd
+        $item->save();
+
+        //return redirect()->route("admin.MovieManagement.movie");
+        return redirect()->route('admin.confiteria')->with('editar','ok');
     }
 
     public function delete(Request $request, $productoid)

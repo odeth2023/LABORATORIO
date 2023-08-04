@@ -19,8 +19,9 @@
             </div>
             
 
-              <form class="forms-sample texto" action="" method='POST' enctype='multipart/form-data'>
+              <form class="forms-sample texto" action="{{route('admin.confiteria.update',$item)}}" method='POST' enctype='multipart/form-data'>
                 {{csrf_field()}}
+                
               
                 @method('put')
 
@@ -48,8 +49,51 @@
                                     <small>*{{$message}}</small> 
                                     @enderror
                                 </div>
+                                 
+                                <div class="col-md-6">
+                                  <div class="row p-2">
 
+                                    <div class="col-12 mb-4">
+                                      <label for="inputState" class="form-label">Categoría</label>
+                                      <select name='idCategoryChild' id="inputState" class="form-select">
+                                          @foreach($productconfectionery2 as $item) 
+                                          <option value="{{$item->idTipoCategoria}}" selected>{{$item->NombreTipoCategoria}}</option>
+                                          @endforeach
+                                          <!---->
+                                          @foreach ($categorychild as $item2)  
+                                            @if($item2->idCategoryChild==$item->idCategoryChild)
+                                              @continue;
+                                            
+                                            @else
+                                            <option value="{{ $item2->idCategoryChild}}">{{ $item2->name}}</option>
+                                            @endif
+                                          @endforeach
+                                        
+                                      </select>
 
+                                      @error('idCategoryChild')
+                                        <small>*{{$message}}</small> 
+                                      @enderror
+                                    </div>
+
+                                    <div class="col-6 form-group">
+                                        <label for="exampleInputPassword1">Precio</label>
+                                        <input type="text" class="form-control"  placeholder="Ejem: 2" name='price' value="{{$item->price}}">
+                                        @error('price')
+                                        <small>*{{$message}}</small> 
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-6 form-group">
+                                        <label for="exampleInputPassword1">Quantity</label>
+                                        <input type="text" class="form-control"  placeholder="Ejem: 2" name='quantity' value="{{$item->quantity}}">
+                                        @error('quantity')
+                                        <small>*{{$message}}</small> 
+                                        @enderror
+                                    </div>
+
+                                  </div>
+                                </div>
                                 
 
                                 
@@ -72,7 +116,7 @@
                             <div class="card-body">
                               <div class="form-group">
                                 <label for='img'>Portada de producto</label>
-                                <input type="file" name="img" class="form-control" id='img'>
+                                <input type="file" name="img" class="form-control" id='img' value="{{$item->img}}">
                                 @error('img')
                                 <small>*{{$message}}</small> 
                                 @enderror
@@ -81,7 +125,7 @@
 
                               <div class='ContenedorImage p-3'>
                                 <div>
-                                  <img src="images/preview.png" alt="" id='imgPreview' >
+                                  <img src="../{{$item->img}}" alt="" id='imgPreview' >
                                 </div>
                                 
                               </div>

@@ -2,9 +2,6 @@
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
 
 
-    <div>
-
-    </div>
 
     <table class="table align-middle mb-0">
         <thead class="">
