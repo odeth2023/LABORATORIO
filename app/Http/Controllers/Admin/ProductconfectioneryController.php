@@ -149,7 +149,7 @@ class ProductconfectioneryController extends Controller
 
     public function delete(Request $request, $productoid)
     {
-        //dd($movieid);
+        //dd($productoid);
         
         $productoid=Productconfectionery::find($productoid);
         if($productoid->img != '')

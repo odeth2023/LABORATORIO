@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('auth/home', [App\Http\Controllers\Auth\HomeController::class, 'index'])->name('auth.home')->middleware('Role');
+Route::get('/home', [App\Http\Controllers\Auth\HomeController::class, 'index'])->name('auth.home')->middleware('Role');
 
 //CATEGORIAS PRINCIPALES
 Route::get('admin/CategoriaMaster3', [CategoryparentController::class, 'index'])->name('admin.categoriaPadre.principal')->middleware('Role');
@@ -57,7 +57,7 @@ Route::get('admin/registroConfiteria', [ProductconfectioneryController::class, '
 Route::post('admin/registrandoConfiteria', [ProductconfectioneryController::class, 'store'])->name('admin.confiteria.register')->middleware('Role');//creando
 Route::get('admin/{item}-VistaEditar', [ProductconfectioneryController::class, 'edit'])->name('admin.confiteria.edit');//mostrando edit con datos
 Route::put('admin/{item}-editandoProducto', [ProductconfectioneryController::class, 'update'])->name('admin.confiteria.update')->middleware('Role');//Actualizando datos
-Route::delete('admin/{producto}-BorrandoProducto', [ProductconfectioneryController::class, 'delete'])->name('admin.confiteria.delete');//eliminando datos
+Route::delete('adminBorrandoProducto/{producto}', [ProductconfectioneryController::class, 'delete'])->name('admin.confiteria.delete');//eliminando datos
 
 
 
