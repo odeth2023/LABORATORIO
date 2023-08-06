@@ -10,6 +10,6 @@ class RoomController extends Controller
     public function index()
     {
         
-        return view('auth.admin.roommanagement.room');
+        return view('auth.admin.room.principal');
     }
 }

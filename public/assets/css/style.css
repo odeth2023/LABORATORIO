@@ -10548,7 +10548,7 @@ textarea.is-invalid.tt-hint {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.btn-group > .btn:nth-child(n + 3), .fc .fc-button-group > .btn:nth-child(n + 3), .fc .btn-group > button:nth-child(n + 3), .fc .fc-button-group > button:nth-child(n + 3), .ajax-upload-dragdrop .btn-group > .ajax-file-upload:nth-child(n + 3), .fc .ajax-upload-dragdrop .fc-button-group > .ajax-file-upload:nth-child(n + 3), .ajax-upload-dragdrop .fc .fc-button-group > .ajax-file-upload:nth-child(n + 3), .swal2-modal .swal2-buttonswrapper .btn-group > .swal2-styled:nth-child(n + 3), .fc .swal2-modal .swal2-buttonswrapper .fc-button-group > .swal2-styled:nth-child(n + 3), .swal2-modal .swal2-buttonswrapper .fc .fc-button-group > .swal2-styled:nth-child(n + 3),
+.btn-group > .btn:nth-child(n + 3), .fc .fc-button-group > .btn:nth-child(n + 3), .fc .btn-group > button:nth-child(n + 3), .fc .fc-button-group > button:nth-child(n + 3), .ajax-upload-dragdrop .btn-group > .ajax-file-upload:nth-child(n + 3), .fc .ajax-upload-dragdrop .fc-button-group > .ajax-file-upload:nth-child(n + 3), .ajax-upload-dragdrop .fc .fc-button-group > .ajax-file-upload:nth-child(n + 3),
 .btn-group > :not(.btn-check) + .btn,
 .fc .fc-button-group > :not(.btn-check) + .btn,
 .fc .btn-group > :not(.btn-check) + button,
@@ -10617,7 +10617,7 @@ textarea.is-invalid.tt-hint {
   .ajax-upload-dragdrop .fc .btn-group-vertical > .fc-button-group:not(:last-child) > .ajax-file-upload{
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0; }
-  .btn-group-vertical > .btn ~ .btn, .fc .btn-group-vertical > button ~ .btn, .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ .btn, .fc .btn-group-vertical > .btn ~ button, .fc .btn-group-vertical > button ~ button, .ajax-upload-dragdrop .fc .btn-group-vertical > .ajax-file-upload ~ button, .fc .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ button, .swal2-modal .swal2-buttonswrapper .fc .btn-group-vertical > .swal2-styled ~ button, .fc .swal2-modal .swal2-buttonswrapper .btn-group-vertical > .swal2-styled ~ button, .ajax-upload-dragdrop .btn-group-vertical > .btn ~ .ajax-file-upload, .fc .ajax-upload-dragdrop .btn-group-vertical > button ~ .ajax-file-upload, .ajax-upload-dragdrop .fc .btn-group-vertical > button ~ .ajax-file-upload, .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .ajax-upload-dragdrop .btn-group-vertical > .swal2-styled ~ .ajax-file-upload, .ajax-upload-dragdrop .swal2-modal .swal2-buttonswrapper .btn-group-vertical > .swal2-styled ~ .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-group-vertical > .btn ~ .swal2-styled, .fc .swal2-modal .swal2-buttonswrapper .btn-group-vertical > button ~ .swal2-styled, .swal2-modal .swal2-buttonswrapper .fc .btn-group-vertical > button ~ .swal2-styled, .ajax-upload-dragdrop .swal2-modal .swal2-buttonswrapper .btn-group-vertical > .ajax-file-upload ~ .swal2-styled, .swal2-modal .swal2-buttonswrapper .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ .swal2-styled, .swal2-modal .swal2-buttonswrapper .btn-group-vertical > .swal2-styled ~ .swal2-styled,
+  .btn-group-vertical > .btn ~ .btn, .fc .btn-group-vertical > button ~ .btn, .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ .btn, .fc .btn-group-vertical > .btn ~ button, .fc .btn-group-vertical > button ~ button, .ajax-upload-dragdrop .fc .btn-group-vertical > .ajax-file-upload ~ button, .fc .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ button, .btn-group-vertical > .ajax-upload-dragdrop .btn-group-vertical > .btn ~ .ajax-file-upload, .fc .ajax-upload-dragdrop .btn-group-vertical > button ~ .ajax-file-upload, .ajax-upload-dragdrop .fc .btn-group-vertical > button ~ .ajax-file-upload, .ajax-upload-dragdrop .btn-group-vertical > .ajax-file-upload ~ .ajax-file-upload, .ajax-upload-dragdrop .btn-group-vertical, .ajax-upload-dragdrop  .btn-group-vertical  .btn-group-vertical , .btn-group-vertical > button  .fc .btn-group-vertical ,   .ajax-upload-dragdrop .btn-group-vertical ,
   .btn-group-vertical > .btn-group:not(:first-child) > .btn,
   .fc .btn-group-vertical > .fc-button-group:not(:first-child) > .btn,
   .fc .btn-group-vertical > .btn-group:not(:first-child) > button,
@@ -16275,7 +16275,7 @@ code {
       #proBanner .buy-now-text {
         font-size: 10px;
         line-height: 1.5; } }
-  #proBanner .btn.buy-now-btn, #proBanner .fc button.buy-now-btn, .fc #proBanner button.buy-now-btn, #proBanner .ajax-upload-dragdrop .buy-now-btn.ajax-file-upload, .ajax-upload-dragdrop #proBanner .buy-now-btn.ajax-file-upload, #proBanner .swal2-modal .swal2-buttonswrapper .buy-now-btn.swal2-styled, .swal2-modal .swal2-buttonswrapper #proBanner .buy-now-btn.swal2-styled {
+  #proBanner .btn.buy-now-btn, #proBanner .fc button.buy-now-btn, .fc #proBanner button.buy-now-btn, #proBanner .ajax-upload-dragdrop .buy-now-btn.ajax-file-upload, .ajax-upload-dragdrop #proBanner .buy-now-btn.ajax-file-upload{
     background: transparent;
     color: #88b6ff;
     border-radius: 10px;
@@ -16284,15 +16284,15 @@ code {
     font-weight: bold;
     font-size: 1rem; }
     @media (max-width: 766px) {
-      #proBanner .btn.buy-now-btn, #proBanner .fc button.buy-now-btn, .fc #proBanner button.buy-now-btn, #proBanner .ajax-upload-dragdrop .buy-now-btn.ajax-file-upload, .ajax-upload-dragdrop #proBanner .buy-now-btn.ajax-file-upload, #proBanner .swal2-modal .swal2-buttonswrapper .buy-now-btn.swal2-styled, .swal2-modal .swal2-buttonswrapper #proBanner .buy-now-btn.swal2-styled {
+      #proBanner .btn.buy-now-btn, #proBanner .fc button.buy-now-btn, .fc #proBanner button.buy-now-btn, #proBanner .ajax-upload-dragdrop .buy-now-btn.ajax-file-upload, .ajax-upload-dragdrop #proBanner .buy-now-btn.ajax-file-upload{
         min-width: 80px;
         padding: 1rem .5rem;
         font-size: 12px; } }
-  #proBanner .btn#bannerClose i, #proBanner .fc button#bannerClose i, .fc #proBanner button#bannerClose i, #proBanner .ajax-upload-dragdrop #bannerClose.ajax-file-upload i, .ajax-upload-dragdrop #proBanner #bannerClose.ajax-file-upload i, #proBanner .swal2-modal .swal2-buttonswrapper #bannerClose.swal2-styled i, .swal2-modal .swal2-buttonswrapper #proBanner #bannerClose.swal2-styled i {
+  #proBanner .btn#bannerClose i, #proBanner .fc button#bannerClose i, .fc #proBanner button#bannerClose i, #proBanner .ajax-upload-dragdrop #bannerClose.ajax-file-upload i, .ajax-upload-dragdrop #proBanner #bannerClose.ajax-file-upload i{
     margin-right: 1rem;
     font-size: 1.25rem; }
     @media (max-width: 766px) {
-      #proBanner .btn#bannerClose i, #proBanner .fc button#bannerClose i, .fc #proBanner button#bannerClose i, #proBanner .ajax-upload-dragdrop #bannerClose.ajax-file-upload i, .ajax-upload-dragdrop #proBanner #bannerClose.ajax-file-upload i, #proBanner .swal2-modal .swal2-buttonswrapper #bannerClose.swal2-styled i, .swal2-modal .swal2-buttonswrapper #proBanner #bannerClose.swal2-styled i {
+      #proBanner .btn#bannerClose i, #proBanner .fc button#bannerClose i, .fc #proBanner button#bannerClose i, #proBanner .ajax-upload-dragdrop #bannerClose.ajax-file-upload i, .ajax-upload-dragdrop #proBanner #bannerClose.ajax-file-upload i{
         font-size: 1rem;
         margin-right: 0; } }
   #proBanner a {
@@ -16386,26 +16386,26 @@ code {
   border: 1px solid #0d0d0d; }
 
 /* Buttons */
-.btn, .fc button, .ajax-upload-dragdrop .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel {
+.btn, .fc button, .ajax-upload-dragdrop .ajax-file-upload {
   font-size: 0.9375rem;
   line-height: 1;
   font-weight: normal;
   /* Buttons with only icons */
   /* Buttons with icon and text */ }
-  .btn i, .fc button i, .ajax-upload-dragdrop .ajax-file-upload i, .swal2-modal .swal2-buttonswrapper .swal2-styled i, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-confirm i, .swal2-modal .swal2-buttonswrapper .swal2-styled.swal2-cancel i {
+  .btn i, .fc button i, .ajax-upload-dragdrop .ajax-file-upload i {
     margin-right: .3125rem; }
-  .btn.btn-rounded, .fc button.btn-rounded, .ajax-upload-dragdrop .btn-rounded.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-rounded.swal2-styled {
+  .btn.btn-rounded, .fc button.btn-rounded, .ajax-upload-dragdrop .btn-rounded.ajax-file-upload {
     border-radius: 50px; }
-  .btn.btn-fw, .fc button.btn-fw, .ajax-upload-dragdrop .btn-fw.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-fw.swal2-styled {
+  .btn.btn-fw, .fc button.btn-fw, .ajax-upload-dragdrop .btn-fw.ajax-file-upload{
     min-width: 150px; }
-  .btn.btn-sm, .btn-group-sm > .btn, .fc .btn-group-sm > button, .ajax-upload-dragdrop .btn-group-sm > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-group-sm > .swal2-styled, .fc button, .ajax-upload-dragdrop .btn-sm.ajax-file-upload, .ajax-upload-dragdrop .fc button.ajax-file-upload, .fc .ajax-upload-dragdrop button.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-sm.swal2-styled, .swal2-modal .swal2-buttonswrapper .fc button.swal2-styled, .fc .swal2-modal .swal2-buttonswrapper button.swal2-styled {
+  .btn.btn-sm, .btn-group-sm > .btn, .fc .btn-group-sm > button, .ajax-upload-dragdrop .btn-group-sm > .ajax-file-upload, .fc button, .ajax-upload-dragdrop .btn-sm.ajax-file-upload, .ajax-upload-dragdrop .fc button.ajax-file-upload, .fc .ajax-upload-dragdrop button.ajax-file-upload{
     font-size: 0.875rem; }
-  .btn.btn-lg, .btn-group-lg > .btn, .fc .btn-group-lg > button, .ajax-upload-dragdrop .btn-group-lg > .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-group-lg > .swal2-styled, .fc button.btn-lg, .ajax-upload-dragdrop .btn-lg.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-lg.swal2-styled {
+  .btn.btn-lg, .btn-group-lg > .btn, .fc .btn-group-lg > button, .ajax-upload-dragdrop .btn-group-lg > .ajax-file-upload, .fc button.btn-lg, .ajax-upload-dragdrop .btn-lg.ajax-file-upload{
     font-size: 0.875rem; }
-  .btn.btn-xs, .fc button.btn-xs, .fc .editable-container.editable-inline .editableform .control-group .editable-buttons button.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .fc button.editable-submit, .fc .editable-container.editable-inline .editableform .control-group .editable-buttons button.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons .fc button.editable-cancel, .ajax-upload-dragdrop .btn-xs.ajax-file-upload, .ajax-upload-dragdrop .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-file-upload.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-upload-dragdrop .ajax-file-upload.editable-submit, .ajax-upload-dragdrop .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-file-upload.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-upload-dragdrop .ajax-file-upload.editable-cancel, .swal2-modal .swal2-buttonswrapper .btn-xs.swal2-styled, .swal2-modal .swal2-buttonswrapper .editable-container.editable-inline .editableform .control-group .editable-buttons .swal2-styled.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .swal2-modal .swal2-buttonswrapper .swal2-styled.editable-submit, .swal2-modal .swal2-buttonswrapper .editable-container.editable-inline .editableform .control-group .editable-buttons .swal2-styled.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons .swal2-modal .swal2-buttonswrapper .swal2-styled.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons .btn.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .btn.editable-cancel {
+  .btn.btn-xs, .fc button.btn-xs, .fc .editable-container.editable-inline .editableform .control-group .editable-buttons button.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .fc button.editable-submit, .fc .editable-container.editable-inline .editableform .control-group .editable-buttons button.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons .fc button.editable-cancel, .ajax-upload-dragdrop .btn-xs.ajax-file-upload, .ajax-upload-dragdrop .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-file-upload.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-upload-dragdrop .ajax-file-upload.editable-submit, .ajax-upload-dragdrop .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-file-upload.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons .ajax-upload-dragdrop .ajax-file-upload.editable-cancel, .btn-xs,  .editable-container.editable-inline .editableform .control-group .editable-buttons , .editable-container.editable-inline .editableform .control-group .editable-buttons  .editable-container.editable-inline .editableform .control-group .editable-buttons styled.editable-cancel, .editable-container.editable-inline .editableform .control-group .editable-buttons, .editable-container.editable-inline .editableform .control-group .editable-buttons .btn.editable-submit, .editable-container.editable-inline .editableform .control-group .editable-buttons .btn.editable-cancel {
     padding: 0.5rem 0.75rem;
     font-size: 0.625rem; }
-  .btn.btn-icon, .fc button.btn-icon, .ajax-upload-dragdrop .btn-icon.ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-icon.swal2-styled {
+  .btn.btn-icon, .fc button.btn-icon, .ajax-upload-dragdrop .btn-icon.ajax-file-upload{
     width: 42px;
     height: 42px;
     padding: 0; }
