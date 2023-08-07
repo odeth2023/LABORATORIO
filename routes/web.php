@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\CategoryparentController;
 use App\Http\Controllers\Admin\CategorychildController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\SeatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,19 +68,21 @@ Route::put('admin/{item}-editandoSala', [RoomController::class, 'update'])->name
 Route::delete('adminBorrandoSala/{item}', [RoomController::class, 'delete'])->name('admin.room.delete')->middleware('Role');//eliminando datos
 
 
+//ASIENTO
+Route::get('admin/asiento', [SeatController::class, 'index'])->name('admin.asiento')->middleware('Role');
 
 
 
 Route::get('admin/funcion', [App\Http\Controllers\Admin\MovieshowController::class, 'index'])->name('admin.funcion')->middleware('Role');
-Route::get('admin/asiento', [App\Http\Controllers\Admin\SeatController::class, 'index'])->name('admin.asiento')->middleware('Role');
 
 
 //VENTA
-Route::get('admin/venta', [App\Http\Controllers\Admin\SaleController::class, 'index'])->name('admin.venta')->middleware('Role');
-Route::get('admin/ventaPelicula', [App\Http\Controllers\Admin\SaleController::class, 'ventaPelicula'])->name('admin.ventaPelicula')->middleware('Role');
-Route::get('admin/ventaConfiteria', [App\Http\Controllers\Admin\SaleController::class, 'ventaConfiteria'])->name('admin.ventaConfiteria')->middleware('Role');
+Route::get('admin/venta', [SaleController::class, 'index'])->name('admin.venta')->middleware('Role');
+Route::get('admin/ventaPelicula', [SaleController::class, 'ventaPelicula'])->name('admin.ventaPelicula')->middleware('Role');
+Route::get('admin/ventaConfiteria', [SaleController::class, 'ventaConfiteria'])->name('admin.ventaConfiteria')->middleware('Role');
 Route::get('admin/{p}', [SaleController::class, 'agregarProductoVenta'])->name('admin.agregarProductoVenta')->middleware('Role');
 Route::get('eliminando/{p}', [SaleController::class, 'quitarProductoVenta'])->name('admin.quitarProductoVenta')->middleware('Role');
+Route::get('admin/ventaBusquedaMovie', [SaleController::class, 'buscador'])->name('admin.buscador')->middleware('Role');
 
 
 

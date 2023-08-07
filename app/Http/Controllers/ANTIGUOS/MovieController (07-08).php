@@ -45,6 +45,7 @@ class MovieController extends Controller
             'img'=>'required|image|mimes:jpg,jpeg,png|max:20000',
             'description'=>'required|max:255',
             'duracion'=>'required|max:8',
+            'price'=>'required|numeric',
             'idCategoryChild'=>'required'
 
         ]);
@@ -76,6 +77,7 @@ class MovieController extends Controller
 
         $newMovie->description=$request->description;
         $newMovie->duracion=$request->duracion;
+        $newMovie->price=$request->price;
         $newMovie->state=0;
         $newMovie->billboard=0;
         $newMovie->idCategoryChild=$request->idCategoryChild;
@@ -106,7 +108,7 @@ class MovieController extends Controller
 
         $movie2 = Movie::join('categorychild', 'categorychild.idCategorychild', '=', 'movie.idCategorychild')
         ->select('movie.*', 'movie.name as movieName','movie.description as descripcion','movie.idCategoryChild as idTipoCategoria',
-                 'categorychild.name as NombreTipoCategoria','movie.duracion as duracion',
+                 'categorychild.name as NombreTipoCategoria', 'movie.price as precio','movie.duracion as duracion',
                  'movie.img as img')  
         ->where('movie.idMovie', '=', $movie->idMovie)          
         ->get();
@@ -125,6 +127,7 @@ class MovieController extends Controller
             'img'=>'image|mimes:jpg,jpeg,png|max:20000',
             'description'=>'required|max:255',
             'duracion'=>'required|max:8',
+            'price'=>'required|numeric',
             'idCategoryChild'=>'required'
             
 
@@ -165,6 +168,7 @@ class MovieController extends Controller
 
         $movie->description=$request->description;
         $movie->duracion=$request->duracion;
+        $movie->price=$request->price;
         $movie->state=0;
         $movie->billboard=0;
         $movie->idCategoryChild=$request->idCategoryChild;

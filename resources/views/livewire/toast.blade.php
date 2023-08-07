@@ -9,7 +9,6 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
-                <th>Precio</th>
                 <th>Estado</th>
                 <th>¿Cartelera?</th>
                 <th>Operaciones</th>
@@ -34,7 +33,6 @@
                     <td>
                         <p class="fw-normal mb-1">{{ $item->description }}</p>
                     </td>
-                    <td>{{ $item->price }}</td>
                     <!--TOOGLE ACTIVAR/DESACTIVAR PELICULA (DISPONIBILIDAD)-->
                     <td data-resp="{{ $item->idMovie }}">
                         <input id='idPelicula' type="hidden" value='{{ $item->idMovie }}'>

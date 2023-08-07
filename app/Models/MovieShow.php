@@ -9,7 +9,7 @@ class Movieshow extends Model
 {
     protected $table = 'movieshow';
     protected $primaryKey ='idfunction';
-    protected $fillable = ['schedule','idMovie','idRoom'];
+    protected $fillable = ['schedule','idMovie','idRoom','price'];
     use HasFactory;
 
     

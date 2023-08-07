@@ -64,9 +64,15 @@
                                       @enderror
                                     </div>
 
-                                    
+                                    <div class="col-6 form-group">
+                                        <label for="exampleInputPassword1">Precio</label>
+                                        <input type="text" class="form-control"  placeholder="Ejem: 2" name='price'>
+                                        @error('price')
+                                        <small>*{{$message}}</small> 
+                                        @enderror
+                                    </div>
 
-                                    <div class="col-12 form-group">
+                                    <div class="col-6 form-group">
                                         <label for="duracion">Duracion</label>
                                         <input class="form-control" type="time" name="duracion" value="00:00:00" max="05:00:00" min="01:00:00" step="1"> 
                                         @error('duracion')

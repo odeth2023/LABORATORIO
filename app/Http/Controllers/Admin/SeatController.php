@@ -9,7 +9,10 @@ class SeatController extends Controller
 {
     public function index()
     {
-        
-        return view('auth.admin.seatmanagement.seat');
+        return view('auth.admin.seat.principal');
     }
+
+
+
+    
 }

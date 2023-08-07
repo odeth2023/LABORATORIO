@@ -1,12 +1,13 @@
 @extends('layouts.masterpage')
 
+
 @section('content')
 
             <div class="grid-margin stretch-card">
               <div class="card pt-0">
                 <div class="card-body pb-0">
                   <div class="page-header">
-                    <h3 class="page-title"> Registro de Nueva Película</h3>
+                    <h3 class="page-title"> Editando Película</h3>
 
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
@@ -18,11 +19,12 @@
               </div>
             </div>
 
-              <form class="forms-sample texto" action="{{route('admin.movie.register')}}" method='POST' enctype='multipart/form-data'>
+            <form class="forms-sample" action="{{route('admin.MovieManagement.update',$movie)}}" method='POST' enctype='multipart/form-data'>
                 {{csrf_field()}}
               
-              
+                @method('put')
 
+                
                 <div class="row">
 
                   <div class="grid-margin stretch-card">
@@ -34,7 +36,7 @@
                               <div class="row p-2">
                                 <div class="col-md-12 form-group">
                                     <label for="exampleInputUsername1">Nombre</label>
-                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de pelicula" name='name'>
+                                    <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de pelicula" name='name' value="{{$movie->name}}">
                                     @error('name')
                                     <small>*{{$message}}</small> 
                                     @enderror
@@ -42,7 +44,7 @@
 
                                 <div class="col-md-6 form-group p-2">
                                     <label for="exampleTextarea1">Descripcion</label>
-                                    <textarea class="form-control" id="exampleTextarea1"  name='description'></textarea>
+                                    <textarea class="form-control" id="exampleTextarea1"  name='description'>{{$movie->description}}</textarea>
                                     @error('description')
                                     <small>*{{$message}}</small> 
                                     @enderror
@@ -54,21 +56,37 @@
                                     <div class="col-12 mb-4">
                                       <label for="inputState" class="form-label">Categoría</label>
                                       <select name='idCategoryChild' id="inputState" class="form-select">
-                                          <option value="" selected>Seleccionar..</option>
-                                        @foreach ($categorychild as $item)  
-                                          <option value="{{ $item->idCategoryChild}}">{{ $item->name}}</option>
-                                        @endforeach
+                                          @foreach($movie2 as $item) 
+                                          <option value="{{$item->idTipoCategoria}}" selected>{{$item->NombreTipoCategoria}}</option>
+                                          @endforeach
+                                          <!---->
+                                          @foreach ($categorychild as $item2)  
+                                            @if($item2->idCategoryChild==$movie->idCategoryChild)
+                                              @continue;
+                                            
+                                            @else
+                                            <option value="{{ $item2->idCategoryChild}}">{{ $item2->name}}</option>
+                                            @endif
+                                          @endforeach
+                                        
                                       </select>
+
                                       @error('idCategoryChild')
                                         <small>*{{$message}}</small> 
                                       @enderror
                                     </div>
 
-                                    
+                                    <div class="col-6 form-group">
+                                        <label for="exampleInputPassword1">Precio</label>
+                                        <input type="text" class="form-control"  placeholder="Ejem: 2" name='price' value="{{$movie->price}}">
+                                        @error('price')
+                                        <small>*{{$message}}</small> 
+                                        @enderror
+                                    </div>
 
-                                    <div class="col-12 form-group">
+                                    <div class="col-6 form-group">
                                         <label for="duracion">Duracion</label>
-                                        <input class="form-control" type="time" name="duracion" value="00:00:00" max="05:00:00" min="01:00:00" step="1"> 
+                                        <input class="form-control" type="time" name="duracion" value="{{$movie->duracion}}" max="05:00:00" min="01:00:00" step="1"> 
                                         @error('duracion')
                                         <small>*{{$message}}</small> 
                                         @enderror
@@ -97,7 +115,7 @@
                             <div class="card-body">
                               <div class="form-group">
                                 <label for='img'>Portada de película</label>
-                                <input type="file" name="img" class="form-control" id='img'>
+                                <input type="file" name="img" class="form-control" id='img' value="{{$movie->img}}">
                                 @error('img')
                                 <small>*{{$message}}</small> 
                                 @enderror
@@ -106,7 +124,7 @@
 
                               <div class='ContenedorImage p-3'>
                                 <div>
-                                  <img src="images/preview.png" alt="" id='imgPreview' >
+                                  <img src="../{{$movie->img}}" alt="" id='imgPreview' >
                                 </div>
                                 
                               </div>
@@ -116,12 +134,12 @@
                 </div>
 
                 
-                <button type="submit" class="btn btn-primary  p-2" value="Save">Registrar Pelicula</button>
+                <button type="submit" class="btn btn-primary  p-2" value="Save">Editar Pelicula</button>
 
-
+                
+                
               
-
-              </form>
+            </form>
 
           
              
@@ -129,7 +147,3 @@
               
 
 @endsection
-
-
-
-

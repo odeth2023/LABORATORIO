@@ -8,6 +8,7 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Models\Productconfectionery;
 use App\Models\Movie;
+use DB;
 
 
 class SaleController extends Controller
@@ -19,11 +20,7 @@ class SaleController extends Controller
     }
 
 
-    public function ventaPelicula()
-    {
-        
-        return view('auth.admin.salesmanagement.saleMovie');
-    }
+    
 
     private function obtenerProductos()
     {
@@ -129,4 +126,18 @@ class SaleController extends Controller
         
     }
 
+
+    /*BOLETERIA*/
+    public function ventaPelicula()
+    {
+        $movie = Movie::all();
+        return view('auth.admin.salesmanagement.saleMovie')->with('movie', $movie);
+    }
+
+    public function buscador(Request $request)
+        {
+            $busqueda = Movie::where('name','like',$request->search_pelicula.'%')->take(10)->get();
+
+            return view('auth.admin.salesmanagement.saleMovie',compact('busqueda'));
+        }
 }

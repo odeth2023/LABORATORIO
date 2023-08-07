@@ -28,6 +28,11 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
     <!-- Formularios Pelicula-->
     <link rel="stylesheet" href="../assets/css/formMovie.css">
+
+    
+    
+    
+    
     <!-- TOKEN AJAX-->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @livewireStyles
@@ -346,8 +351,10 @@
   src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
   crossorigin="anonymous"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
+    
     @yield('js')
     
     @livewireScripts

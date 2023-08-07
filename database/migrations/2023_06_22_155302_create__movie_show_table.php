@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('schedule');
             $table->unsignedBigInteger('idMovie');
             $table->unsignedBigInteger('idRoom');
-
+            $table->float("price");
 
             $table->foreign('idMovie')->references('idMovie')->on('movie')->onDelete('cascade');
             $table->foreign('idRoom')->references('idRoom')->on('room')->onDelete('cascade');
