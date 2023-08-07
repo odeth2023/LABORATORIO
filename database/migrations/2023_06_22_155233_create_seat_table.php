@@ -16,9 +16,6 @@ return new class extends Migration
         Schema::create('seat', function (Blueprint $table) {
             $table->id('idSeat');
             $table->string('seatNumber');
-            $table->unsignedBigInteger('idRoom');
-
-            $table->foreign('idRoom')->references('idRoom')->on('room')->onDelete('cascade');
             $table->timestamps();
         });
     }

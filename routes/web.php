@@ -62,6 +62,9 @@ Route::delete('adminBorrandoProducto/{producto}', [ProductconfectioneryControlle
 
 //SALA
 Route::get('admin/sala', [RoomController::class, 'index'])->name('admin.sala')->middleware('Role');
+Route::post('admin/registrandoSala', [RoomController::class, 'store'])->name('admin.room.register')->middleware('Role');//creando
+Route::put('admin/{item}-editandoSala', [RoomController::class, 'update'])->name('admin.room.update')->middleware('Role');//Actualizando datos
+Route::delete('adminBorrandoSala/{item}', [RoomController::class, 'delete'])->name('admin.room.delete')->middleware('Role');//eliminando datos
 
 
 

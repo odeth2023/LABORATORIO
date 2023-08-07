@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('idRoom');
             $table->string('roomNumber');
             $table->integer('NumberSeats');
-            $table->char('state');
+            $table->char('state')->default(0);;
             $table->timestamps();
         });
     }

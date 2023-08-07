@@ -115,7 +115,7 @@
 
                                                     <!-- Modal -->
                                                 <div class="modal fade" id="editar-{{$item->idRoom}}"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                        <form class="forms-sample edit-form" action="{{route('admin.room.update',$item)}}" method='POST' enctype='multipart/form-data'>
+                                                        <form class="forms-sample edit-form" action="" method='' enctype='multipart/form-data'>
                                                             {{csrf_field()}}
                                                             @method('put')
                                                         
@@ -134,7 +134,7 @@
 
                                                                         <div class="col-md-12 form-group">
                                                                             <label for="exampleInputUsername1">Nombre de Sala</label>
-                                                                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='roomNumber' id='roomNumber'  value='{{ $item->roomNumber }}'>
+                                                                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='roomNumber' value='{{ $item->roomNumber }}'>
                                                                             @error('roomNumber')
                                                                             <small>*{{$message}}</small> 
                                                                             @enderror
@@ -142,13 +142,29 @@
 
                                                                         <div class="col-md-12 form-group">
                                                                             <label for="exampleInputUsername1">Número de asientos</label>
-                                                                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='NumberSeats' id='NumberSeats' value='{{ $item->NumberSeats }}'>
+                                                                            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Nombre de categoría" name='NumberSeats' value='{{ $item->NumberSeats }}'>
                                                                             @error('NumberSeats')
                                                                             <small>*{{$message}}</small> 
                                                                             @enderror
                                                                         </div>
 
+                                                                        <div>
+                                                                        @if($item->state==1)
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input estadoSala" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked
+                                                                            name='state'>
+                                                                            <label class="form-check-label" for="flexSwitchCheckChecked">Activado</label>
+                                                                        </div>
+                                                                        @else
+                                                                        <div class="form-check form-switch">
+                                                                            <input class="form-check-input estadoSala" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                                                            name='state'>
+                                                                            <label class="form-check-label" for="flexSwitchCheckChecked">Desactivado</label>
+                                                                        </div>            
+                                                                        @endif
+
                                                                         
+                                                                        </div>
                                                                     </div>
 
                                                                     <div class="modal-footer">
@@ -167,7 +183,7 @@
 
 
                                                 <div>
-                                                    <form action="{{ route('admin.room.delete', $item->idRoom) }}" method="POST" class='text-light' id='formulario-eliminar'>
+                                                    <form action="{{ route('admin.room.delete', $item->id) }}" method="POST" class='text-light' id='formulario-eliminar'>
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button type="submit"
@@ -205,9 +221,68 @@
 
 
 @section('js')
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        
+        $('body').on('submit','.edit-form', function(e){
+            e.preventDefault();
+            $('.estadoSala').change(function() {
+                //Verifico el estado del checkbox, si esta seleccionado sera igual a 1 de lo contrario sera igual a 0
+                //Método prop() para revisar si el check esta seleccionado
+                var estado = $(this).prop('checked') == true ? 1 : 0; 
+            }) 
+
+            var form =$(this).serialize();
+            var url =$(this).attr('action');
+            $.post(url, form, function(data){
+                $('.editmodal').modal('hide');
+                MostrarListado();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Has editado una categoría',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+            //alert('a');
+        });
+
+       
+
+    });
+</script>
+
+<script type='text/javascript'>
+     $('.estadoSala').change(function() {
+        //Verifico el estado del checkbox, si esta seleccionado sera igual a 1 de lo contrario sera igual a 0
+        //Método prop() para revisar si el check esta seleccionado
+        var estado = $(this).prop('checked') == true ? 1 : 0; 
+        
+
+        $.ajax({
+              type: "post",
+              //url a donde dirijo el metodo
+              url: 'Controller/UpdateEstadoCartelera.php',
+              data: {'estado': estado, 'id': id},
+              
+              success: function(result){
+                  console.log("llego aqui metodo 2");
+              
+              }
+          });
+
+          
 
 
-
+      })  
+</script>
 
 @if (session('crear')=='ok')
     <script type='text/javascript'>
