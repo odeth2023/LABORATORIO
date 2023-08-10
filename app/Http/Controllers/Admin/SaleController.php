@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sale;
+use App\Models\Seat;
 use App\Models\SaleDetail;
 use App\Models\Productconfectionery;
 use App\Models\Movie;
+use App\Models\CategoryParent;
 use DB;
 
 
@@ -131,13 +133,45 @@ class SaleController extends Controller
     public function ventaPelicula()
     {
         $movie = Movie::all();
-        return view('auth.admin.salesmanagement.saleMovie')->with('movie', $movie);
+        $seat = Seat::all();
+        return view('auth.admin.salesmanagement.saleMovie')->with('movie', $movie)->with('seat', $seat);
     }
 
-    public function buscador(Request $request)
-        {
-            $busqueda = Movie::where('name','like',$request->search_pelicula.'%')->take(10)->get();
-
-            return view('auth.admin.salesmanagement.saleMovie',compact('busqueda'));
+    public function store(Request $request)
+    {  // este metodo obtiene el json y se lo asigna a la variable $datos
+        $datos = $request->json();
+        // o tambien puedes hacer:
+        $datos = $request->json()->all();
+    
+        
+        //$fecha = $array[0]->fecha; // la fecha de mi posición 0 en el array
+        dd($datos);
+        ///valida que sea un peticion ajax
+        if($request->ajax()){
+        $datosz->valores;
         }
+        
+        ///valida que sea un peticion ajax
+        /*if($request->ajax()){
+        $datos->valores;
+        }   */
+
+        //dd($request);
+        //dd($request->json2);
+        //dd($request->json2['butacas']);
+
+        
+        
+
+
+        //$newMovie= new Movie();
+
+        
+        //$newMovie->idCategoryChild=$request->idCategoryChild;
+
+        //$newMovie->save();
+
+        //return redirect()->route('admin.venta')->with('crear','ok');
+
+    }
 }

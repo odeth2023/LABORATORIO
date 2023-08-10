@@ -19,12 +19,12 @@
           <div class="input-group mb-3 input-busqueda">
             
             
-            <label style="width: 10%" class="input-group-text">Options</label>
+            <label style="width: 10%" class="input-group-text" for="inputGroupSelect01">Options</label>
 
-            <div style="width: 90%" class='contenedor-form-search'>
-              <select style="width: 100%" class="p-5 js-example-basic-single js-states form-control border-none SELECCION_MOVIE" id="search_pelicula">
+            <div style="width: 90%" class='contenedor-form-search' id='inputGroupSelect01'>
+              <select style="width: 100%" class="p-5 js-example-basic-single js-states form-control border-none" id="search_pelicula">
                 @foreach ($movie as $item)
-                  <option value="{{ $item->name }}" >{{ $item->name }}</option>
+                  <option value="{{ $item->name }}">{{ $item->name }}</option>
                 @endforeach  
               </select>
             </div>
@@ -87,7 +87,7 @@
 
       
         <div class="col-md-4 DatosVenta p-2 m-0">
-          <form class="forms-sample" id='form' action="" method='get' enctype='multipart/form-data'>
+          <form class="forms-sample" id='form' action="{{route('admin.ventamg')}}" method='POST' enctype='multipart/form-data'>
               {{csrf_field()}}
             <div class='DatosVenta_lista p-3'>
               @php
@@ -437,7 +437,6 @@
 
  <script type='text/javascript'>
   //Pelicula obtenida del buscador
-  const BUSCADOR = document.getElementById('SELECCION_MOVIE');
   const PeliculaEncontrada = document.getElementById('search_pelicula').value;
   //Poner el nombre de la pelicula obtenida en la lista de venta
   const PeliculaSeleccionada = document.getElementById('Pelicula-Seleccionada');
@@ -459,13 +458,8 @@
 
   //let ticketPrice = +movieSelect.value;
   let ticketPrice = 25;
-
-  function pelicula_encontrada(){
-      PeliculaSeleccionada.innerText = PeliculaEncontrada;
-    }
-
-  if(PeliculaSeleccionada!=''){
-    //Update total and count
+  if(PeliculaEncontrada!=''){
+  //Update total and count
     function updateSelectedCount() {
       const selectedSeats = document.querySelectorAll('.row .seat.selected');
       const selectedSeatsCount = selectedSeats.length;
@@ -474,13 +468,13 @@
       
       total.innerText = selectedSeatsCount * ticketPrice;
       total2.innerText = selectedSeatsCount * ticketPrice;
-      /*if( total.innerText>0){
+      if( total.innerText>0){
         PeliculaSeleccionada.innerText = PeliculaEncontrada;
         
       }
       else{
         PeliculaSeleccionada.innerText=' ';
-      }*/
+      }
     }
    
     function carrito() {
@@ -518,11 +512,7 @@
 
   }
 
-  BUSCADOR.addEventListener('click', e => {
-    console.log('a');
-  });
 
-  
 
   //Movie Select Event
   ASIENTOS.addEventListener('change', e => {
@@ -565,50 +555,44 @@
   });
   }
 
-  var butacas=asientos_seleccionados;
-  //var pelicula=
+  var c=asientos_seleccionados;
 
   $(document).ready(function() {
         $('.js-example-basic-single').select2();
   });
 
   $(document).ready(function(){
-    $.ajaxSetup({
+        $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
+  });
 
 
         $('#form').on('submit', function(e){
             event.preventDefault();
-            var filas = [];
-            //console.log(c); RECONOCE EL ARRAY ENVIADO
 
-            //var codigo = 1;
-            //var mono =  2;
-            //var form =$(this).serialize();
-            //var url =$(this).attr('action');
-            var fila = {
-              butacas_venta:butacas
-            };
-            filas.push(fila);//AQUI SE AGREGA AL ARRAY EL JSON CON LOS DATOS
-
-            //console.log(filas); SI ENVIA A LA CONSOLA EL JSON CON LA CLAVE CODIGO PARA EL ARRAY
-
+            var form =$(this).serialize();
+            var url =$(this).attr('action');
+            //var json2 =c;
+            //console.log(json2);
             $.ajax({
-                type: "get",
-                url: "{{URL::to('VMG/pelicula')}}",
-                data: {valores : JSON.stringify(filas)},
-                /*dataType: "json",*/
+                type: "POST",
+                url: url,
+                data: form,   
+                dataType: "json",
+                //dataType: "json",
                 success: function(data){
+                  console.log(data);
                     
-                    console.log(data)
                 }
             });
         });
+        
+        
+        
 
-  });
+    });
  </script>
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

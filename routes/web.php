@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\ProductconfectioneryController;
 use App\Http\Controllers\Admin\SaleController;
+use App\Http\Controllers\Admin\saleMovieController;
 use App\Http\Controllers\Admin\CategoryparentController;
 use App\Http\Controllers\Admin\CategorychildController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\SeatController;
+//usuario cliente
+use App\Http\Controllers\User\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +73,7 @@ Route::delete('adminBorrandoSala/{item}', [RoomController::class, 'delete'])->na
 
 //ASIENTO
 Route::get('admin/asiento', [SeatController::class, 'index'])->name('admin.asiento')->middleware('Role');
-
+Route::post('admin/registrandoAsiento', [SeatController::class, 'store'])->name('admin.seat.register')->middleware('Role');//creando
 
 
 Route::get('admin/funcion', [App\Http\Controllers\Admin\MovieshowController::class, 'index'])->name('admin.funcion')->middleware('Role');
@@ -82,8 +85,8 @@ Route::get('admin/ventaPelicula', [SaleController::class, 'ventaPelicula'])->nam
 Route::get('admin/ventaConfiteria', [SaleController::class, 'ventaConfiteria'])->name('admin.ventaConfiteria')->middleware('Role');
 Route::get('admin/{p}', [SaleController::class, 'agregarProductoVenta'])->name('admin.agregarProductoVenta')->middleware('Role');
 Route::get('eliminando/{p}', [SaleController::class, 'quitarProductoVenta'])->name('admin.quitarProductoVenta')->middleware('Role');
-Route::get('admin/ventaBusquedaMovie', [SaleController::class, 'buscador'])->name('admin.buscador')->middleware('Role');
 
+Route::get('VMG/pelicula', [saleMovieController::class, 'store'])->name('admin.ventamg')->middleware('Role');
 
 
 
@@ -96,9 +99,11 @@ Route::get('admin/cliente', [App\Http\Controllers\Admin\CustomerController::clas
 
 
 //VISTA NORMAL PARA CLIENTES
-Route::get('user/home', [App\Http\Controllers\User\HomeController::class, 'index'])->name('user.home');
-Route::get('user/compras', [App\Http\Controllers\User\HomeController::class, 'compras'])->name('compras.home');
-Route::get('user/reporte', [App\Http\Controllers\User\HomeController::class, 'reporte'])->name('reporte.home');
+Route::get('user/home', [HomeController::class, 'index'])->name('user.home');
+Route::get('user/compras', [HomeController::class, 'compras'])->name('compras.home');
+Route::get('user/reporte', [HomeController::class, 'reporte'])->name('reporte.home');
+Route::get('user/peliculas', [HomeController::class, 'peliculas'])->name('user.peliculas');
+
 
 //Route::get('user/candy', [App\Http\Controllers\User\HomeController::class, 'index2'])->name('user.candy');
 

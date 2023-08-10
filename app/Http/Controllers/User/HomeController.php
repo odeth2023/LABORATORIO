@@ -15,6 +15,11 @@ class HomeController extends Controller
         return view('user.candy');
     }
 
+    public function peliculas()
+    {
+        return view('user.pelicula');
+    }
+
     public function compras()
     {
         //colocamos una variable para el modelo y luego el nombre como lo llamaremos para listar
