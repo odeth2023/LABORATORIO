@@ -39,7 +39,7 @@
                     <nav class="header__menu">
                         <ul>
                             <li><a href="#">Inicio</a></li>
-                            <li class="active"><a href="{{ route('user.peliculas') }}">Peliculas</a></li>
+                            <li><a href="{{ route('user.peliculas') }}">Peliculas</a></li>
                             <li><a href="confiteria.html">Confiteria</a></li>
 
                                 <!-- Authentication Links -->
