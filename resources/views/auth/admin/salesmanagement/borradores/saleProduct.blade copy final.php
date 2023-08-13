@@ -23,37 +23,47 @@
        
         
         <div class="row row-cols-1 row-cols-md-3 g-4">
-         
-          @foreach ($producto as $item)
+            @php
+              $listap = [];
+              $listac = [];
+            @endphp
 
-                  <div class="col-3">
-                    
-                    <a href="{{route('admin.agregarProductoVenta',$item)}}" class='text-decoration-none'>
-                        <div class="card h-100">
-                          <img src="https://www.importadoraespinoza.com/Dinamic/Assets/img/no_image.jpg" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <p class="card-title">{{$item->name}}</p>
-                          </div>
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                            <div class="row">
-                              <div class="col">
-                              {{$item->price}}
-                              </div>
-                              <div class="col">
-                              {{$item->quantity}}
-                              </div>
-                              
-                            </div>
-                            </li>
-                          </ul>
-                        </div>
-                      
-                    </a>
-                  </div>
-                  
-          @endforeach            
-        
+          @foreach ($producto as $p)
+            @php
+              array_push($listap, $p);
+            @endphp
+          @endforeach  
+
+          @foreach ($carrito as $c)
+            @php
+              array_push($listac, $c);
+            @endphp
+          @endforeach  
+          
+          
+          
+          
+          @foreach ($listap as $p)
+            @php
+              if(in_array($p->idConfectionery='0', $listac)){
+                dd($p);
+              }
+            @endphp 
+          @endforeach 
+            
+           
+           
+          
+          
+              
+            
+
+
+          
+          
+
+          
+          
         </div>
       </div>
 

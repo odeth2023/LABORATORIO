@@ -83,7 +83,7 @@ Route::get('admin/funcion', [App\Http\Controllers\Admin\MovieshowController::cla
 Route::get('admin/venta', [SaleController::class, 'index'])->name('admin.venta')->middleware('Role');
 Route::get('admin/ventaPelicula', [SaleController::class, 'ventaPelicula'])->name('admin.ventaPelicula')->middleware('Role');
 Route::get('admin/ventaConfiteria', [SaleController::class, 'ventaConfiteria'])->name('admin.ventaConfiteria')->middleware('Role');
-Route::get('admin/{p}', [SaleController::class, 'agregarProductoVenta'])->name('admin.agregarProductoVenta')->middleware('Role');
+Route::get('agregandoProducto/{p}', [SaleController::class, 'agregarProductoVenta'])->name('admin.agregarProductoVenta')->middleware('Role');
 Route::get('eliminando/{p}', [SaleController::class, 'quitarProductoVenta'])->name('admin.quitarProductoVenta')->middleware('Role');
 
 Route::get('VMG/pelicula', [saleMovieController::class, 'store'])->name('admin.ventamg')->middleware('Role');

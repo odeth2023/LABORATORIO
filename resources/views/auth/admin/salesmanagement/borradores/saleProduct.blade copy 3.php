@@ -23,37 +23,71 @@
        
         
         <div class="row row-cols-1 row-cols-md-3 g-4">
-         
-          @foreach ($producto as $item)
+          
+        @foreach ($producto as $item)
+            @foreach ($carrito as $item2)
+              @if ($item->idConfectionery == $item2->idConfectionery) 
 
-                  <div class="col-3">
-                    
-                    <a href="{{route('admin.agregarProductoVenta',$item)}}" class='text-decoration-none'>
-                        <div class="card h-100">
+                <div class="col-3">
+                  
+                  <a href="" class='text-decoration-none'>
+                        <div class="card h-100 disabled_1">
+                        <div class="disabled_2"></div>
                           <img src="https://www.importadoraespinoza.com/Dinamic/Assets/img/no_image.jpg" class="card-img-top" alt="...">
                           <div class="card-body">
-                            <p class="card-title">{{$item->name}}</p>
+                            <p class="card-title">$item->name</p>
                           </div>
                           <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                             <div class="row">
                               <div class="col">
-                              {{$item->price}}
+                              $item->price
                               </div>
                               <div class="col">
-                              {{$item->quantity}}
+                              $item->quantity
                               </div>
                               
                             </div>
                             </li>
                           </ul>
-                        </div>
-                      
-                    </a>
-                  </div>
+                        </div>   
+                  </a>
+                </div>
+             
+
+              @else
+
+                <div class="col-3">
                   
-          @endforeach            
-        
+                  <a href="" class='text-decoration-none'>
+                      <div class="card h-100">
+                        <img src="https://www.importadoraespinoza.com/Dinamic/Assets/img/no_image.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-title">{{$item['name']}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                          <div class="row">
+                            <div class="col">
+                            {{$item['price']}}
+                            </div>
+                            <div class="col">
+                            {{$item['quantity']}}
+                            </div>
+                            
+                          </div>
+                          </li>
+                        </ul>
+                      </div>
+                    
+                  </a>
+                </div>
+                
+              @endif
+              
+            @endforeach 
+          @endforeach  
+          
         </div>
       </div>
 

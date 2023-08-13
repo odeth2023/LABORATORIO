@@ -58,11 +58,13 @@ class SaleController extends Controller
         //$array=($producto->comments()->get()->toArray());
         
         
+       /* return view('auth.admin.salesmanagement.saleProduct', array(
+            "carrito" => $productos,
+        ))->with('producto',$producto->toArray());*/
+
         return view('auth.admin.salesmanagement.saleProduct', array(
             "carrito" => $productos,
-        ))->with('producto',$producto->toArray());
-
-        
+        ))->with('producto',$producto);
     }
 
     /**/ 
@@ -77,16 +79,17 @@ class SaleController extends Controller
 
 
     private function agregarProductoACarrito($producto)
-    {
+    {   
         $productos = $this->obtenerProductos();
-        
-        $producto->quantity = 1;
-        array_push($productos, $producto);
-        
-
-        $this->guardarProductos($productos);
-
         //dd($productos);
+
+        //dd( $producto->idConfectionery);
+        //dd($productos);
+              
+                $producto->quantity = 1;
+                array_push($productos, $producto);   
+                $this->guardarProductos($productos);     
+           
         
     }
 
