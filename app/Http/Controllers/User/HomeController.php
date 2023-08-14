@@ -12,12 +12,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('user.candy');
+        return view('user.home');
     }
 
     public function peliculas()
     {
         return view('user.pelicula');
+    }
+
+    public function confiteria()
+    {
+        return view('user.confiteria');
     }
 
     public function compras()

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Productconfectionery;
 
 class User extends Authenticatable
 {
@@ -44,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function cart()
+    {
+        return $this->belongsToMany(Productconfectionery::class,'cart','idUser','idConfectionery')
+                    ->withPivot(['idCart','quantity_product'])->withTimestamps();
+    }
 }

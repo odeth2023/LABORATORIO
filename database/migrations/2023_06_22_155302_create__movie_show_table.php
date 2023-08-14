@@ -16,12 +16,15 @@ return new class extends Migration
         Schema::create('MovieShow', function (Blueprint $table) {
             $table->id('idfunction');
             $table->string('schedule');
+            $table->string('hour');
             $table->unsignedBigInteger('idMovie');
             $table->unsignedBigInteger('idRoom');
-            $table->float("price");
+            $table->unsignedBigInteger('idseatdetail');
+            $table->float("price_show");
 
             $table->foreign('idMovie')->references('idMovie')->on('movie')->onDelete('cascade');
             $table->foreign('idRoom')->references('idRoom')->on('room')->onDelete('cascade');
+            $table->foreign('idseatdetail')->references('idseatdetail')->on('seatdetail')->onDelete('cascade');
 
             $table->timestamps();
         });

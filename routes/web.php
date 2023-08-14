@@ -85,6 +85,7 @@ Route::get('admin/ventaPelicula', [SaleController::class, 'ventaPelicula'])->nam
 Route::get('admin/ventaConfiteria', [SaleController::class, 'ventaConfiteria'])->name('admin.ventaConfiteria')->middleware('Role');
 Route::get('agregandoProducto/{p}', [SaleController::class, 'agregarProductoVenta'])->name('admin.agregarProductoVenta')->middleware('Role');
 Route::get('eliminando/{p}', [SaleController::class, 'quitarProductoVenta'])->name('admin.quitarProductoVenta')->middleware('Role');
+Route::post('actualizar-cantidad/{p}', [SaleController::class, 'updateQuantity'])->name('admin.updateQuantity')->middleware('Role');
 
 Route::get('VMG/pelicula', [saleMovieController::class, 'store'])->name('admin.ventamg')->middleware('Role');
 
@@ -102,6 +103,7 @@ Route::get('admin/cliente', [App\Http\Controllers\Admin\CustomerController::clas
 Route::get('user/home', [HomeController::class, 'index'])->name('user.home');
 Route::get('user/compras', [HomeController::class, 'compras'])->name('compras.home');
 Route::get('user/reporte', [HomeController::class, 'reporte'])->name('reporte.home');
+Route::get('user/confiteria', [HomeController::class, 'confiteria'])->name('user.confiteria');
 Route::get('user/peliculas', [HomeController::class, 'peliculas'])->name('user.peliculas');
 
 

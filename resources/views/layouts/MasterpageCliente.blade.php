@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <link rel="icon" href="img/peli.png" type="image/x-icon">
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula//bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../assetsCustomer/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/nice-select.css" type="text/css">
@@ -31,16 +31,16 @@
                 <div class="col-12 d-flex justify-content-around">
 
                     <div class="header__logo">
-                        <a href="Peliculas.html">
+                        <a href="{{ route('user.home') }}">
                             <img src="../assetsCustomer/images/logo.png" alt="">
                         </a>
                     </div>
 
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="#">Inicio</a></li>
+                            <li><a href="{{ route('user.home') }}">Inicio</a></li>
                             <li><a href="{{ route('user.peliculas') }}">Peliculas</a></li>
-                            <li><a href="confiteria.html">Confiteria</a></li>
+                            <li><a href="{{ route('user.confiteria') }}">Confiteria</a></li>
 
                                 <!-- Authentication Links -->
                             @guest

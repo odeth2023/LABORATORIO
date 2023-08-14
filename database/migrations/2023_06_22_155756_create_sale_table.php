@@ -17,12 +17,11 @@ return new class extends Migration
             $table->id('idSale');
             $table->float('total');
             $table->string('DateSale');
-            $table->unsignedBigInteger('idCustomer');
-            $table->unsignedBigInteger('idMovie');
+            $table->string('HourSale');
 
-            $table->foreign('idCustomer')->references('idCustomer')->on('customer')->onDelete('cascade');
-            $table->foreign('idMovie')->references('idMovie')->on('movie')->onDelete('cascade');
-
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');    
+            
             $table->timestamps();
         });
     }
