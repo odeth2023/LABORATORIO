@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CategoryparentController;
 use App\Http\Controllers\Admin\CategorychildController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\SeatController;
+use App\Http\Controllers\Admin\ShowController;
 //usuario cliente
 use App\Http\Controllers\User\HomeController;
 
@@ -75,18 +76,22 @@ Route::delete('adminBorrandoSala/{item}', [RoomController::class, 'delete'])->na
 Route::get('admin/asiento', [SeatController::class, 'index'])->name('admin.asiento')->middleware('Role');
 Route::post('admin/registrandoAsiento', [SeatController::class, 'store'])->name('admin.seat.register')->middleware('Role');//creando
 
-
-Route::get('admin/funcion', [App\Http\Controllers\Admin\MovieshowController::class, 'index'])->name('admin.funcion')->middleware('Role');
+//FUNCION
+Route::get('admin/funcion', [ShowController::class, 'index'])->name('admin.funcion')->middleware('Role');
 
 
 //VENTA
 Route::get('admin/venta', [SaleController::class, 'index'])->name('admin.venta')->middleware('Role');
-Route::get('admin/ventaPelicula', [SaleController::class, 'ventaPelicula'])->name('admin.ventaPelicula')->middleware('Role');
 Route::get('admin/ventaConfiteria', [SaleController::class, 'ventaConfiteria'])->name('admin.ventaConfiteria')->middleware('Role');
 Route::get('agregandoProducto/{p}', [SaleController::class, 'agregarProductoVenta'])->name('admin.agregarProductoVenta')->middleware('Role');
+Route::get('agregandoProductoBuscado', [SaleController::class, 'agregarProductoBuscado'])->name('admin.agregarProductoBuscado')->middleware('Role');
 Route::get('eliminando/{p}', [SaleController::class, 'quitarProductoVenta'])->name('admin.quitarProductoVenta')->middleware('Role');
 Route::post('actualizar-cantidad/{p}', [SaleController::class, 'updateQuantity'])->name('admin.updateQuantity')->middleware('Role');
+Route::get('CancelarVenta/producto', [SaleController::class, 'cancelarVenta'])->name('admin.cancelarVenta')->middleware('Role');
+Route::post('VentaFinalizada/productosA', [SaleController::class, 'finalizarVenta'])->name('admin.finalizarVenta')->middleware('Role');
 
+
+Route::get('admin/ventaPelicula', [SaleMovieController::class, 'ventaPelicula'])->name('admin.ventaPelicula')->middleware('Role');
 Route::get('VMG/pelicula', [saleMovieController::class, 'store'])->name('admin.ventamg')->middleware('Role');
 
 
@@ -104,8 +109,10 @@ Route::get('user/home', [HomeController::class, 'index'])->name('user.home');
 Route::get('user/compras', [HomeController::class, 'compras'])->name('compras.home');
 Route::get('user/reporte', [HomeController::class, 'reporte'])->name('reporte.home');
 Route::get('user/confiteria', [HomeController::class, 'confiteria'])->name('user.confiteria');
-Route::get('user/peliculas', [HomeController::class, 'peliculas'])->name('user.peliculas');
+Route::get('user/confiteriaD/{id}', [HomeController::class, 'confiteriaD'])->name('user.confiteriaD');
 
+Route::get('user/peliculas', [HomeController::class, 'peliculas'])->name('user.peliculas');
+Route::get('user/estrenos', [HomeController::class, 'estrenos'])->name('user.estrenos');
 
 //Route::get('user/candy', [App\Http\Controllers\User\HomeController::class, 'index2'])->name('user.candy');
 

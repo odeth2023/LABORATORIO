@@ -19,14 +19,14 @@ return new class extends Migration
             $table->unsignedBigInteger('idCustomer');
             $table->unsignedBigInteger('idSeat');
 
-            $table->string('NVoucher');
+            
             $table->char('state');
             $table->string('ReservationDate');
             $table->float('total');
             $table->timestamps();
 
 
-            $table->foreign('idfunction')->references('idfunction')->on('MovieShow')->onDelete('cascade');
+            $table->foreign('idfunction')->references('idfunction')->on('show')->onDelete('cascade');
             $table->foreign('idCustomer')->references('idCustomer')->on('customer')->onDelete('cascade');
             $table->foreign('idSeat')->references('idSeat')->on('seat')->onDelete('cascade');
         });

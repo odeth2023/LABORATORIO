@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Reservation;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\Movie;
+use App\Models\Categorychild;
+use App\Models\Productconfectionery;
 
 class HomeController extends Controller
 {
@@ -17,12 +20,34 @@ class HomeController extends Controller
 
     public function peliculas()
     {
-        return view('user.pelicula');
+        $movie= Movie::join('categorychild', 'categorychild.idCategorychild', '=', 'movie.idCategorychild')
+        ->select('movie.*', 'movie.name as movieName','movie.description as descripcion','movie.idCategoryChild as idTipoCategoria',
+                 'categorychild.name as NombreTipoCategoria','movie.duracion as duracion',
+                 'movie.img as img')     
+        ->get();
+
+        $c= Categorychild::where('idCategoryParent', '=',1)->get();
+        
+        return view('user.pelicula')->with('movie', $movie)->with('c',$c);
+    }
+
+    public function estrenos()
+    {
+        $c= Categorychild::where('idCategoryParent', '=',1)->get();
+        return view('user.estrenos')->with('c',$c);
     }
 
     public function confiteria()
     {
-        return view('user.confiteria');
+        $c= Categorychild::where('idCategoryParent', '=',2)->get();
+        return view('user.confiteria')->with('c',$c);
+    }
+
+    public function confiteriaD($id)
+    {
+        $c= Categorychild::where('idCategoryParent', '=',2)->get();
+        $producto=Productconfectionery::where('idCategoryChild', '=',$id)->get();
+        return view('user.confiteriaD')->with('producto',$producto)->with('c',$c);
     }
 
     public function compras()

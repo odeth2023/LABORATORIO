@@ -22,7 +22,7 @@
             <label style="width: 10%" class="input-group-text">Options</label>
 
             <div style="width: 90%" class='contenedor-form-search'>
-              <select id='producto' name='producto'  style="width: 100%" class="p-5 js-example-basic-single js-states form-control border-none SELECCION_MOVIE" id="search_pelicula">
+              <select style="width: 100%" class="p-5 js-example-basic-single js-states form-control border-none SELECCION_MOVIE" id="search_pelicula">
                 @foreach ($movie as $item)
                   <option value="{{ $item->name }}" >{{ $item->name }}</option>
                 @endforeach  
@@ -438,7 +438,7 @@
  <script type='text/javascript'>
   //Pelicula obtenida del buscador
   const BUSCADOR = document.getElementById('SELECCION_MOVIE');
-  //const PeliculaEncontrada = document.getElementById('search_pelicula').value;
+  const PeliculaEncontrada = document.getElementById('search_pelicula').value;
   //Poner el nombre de la pelicula obtenida en la lista de venta
   const PeliculaSeleccionada = document.getElementById('Pelicula-Seleccionada');
   const ASIENTOS = document.querySelector('.ASIENTOS');
@@ -452,6 +452,7 @@
   const asientos_seleccionados = [];
   const lista = document.getElementById('lista-asientos-seleccionados');
   var div= document.createElement('div');
+  //div.classList.add('mydiv');
   lista.appendChild(div);
 
   //var json = {};
@@ -459,7 +460,11 @@
   //let ticketPrice = +movieSelect.value;
   let ticketPrice = 25;
 
-  if(PeliculaSeleccionada!=false){
+  function pelicula_encontrada(){
+      PeliculaSeleccionada.innerText = PeliculaEncontrada;
+    }
+
+  if(PeliculaSeleccionada!=''){
     //Update total and count
     function updateSelectedCount() {
       const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -469,11 +474,12 @@
       
       total.innerText = selectedSeatsCount * ticketPrice;
       total2.innerText = selectedSeatsCount * ticketPrice;
+   
     }
    
     function carrito() {
       div= document.createElement('div');
-      
+      //div.classList.add('mydiv');
       lista.appendChild(div);
       asientos_seleccionados.splice(0,asientos_seleccionados.length);
       
@@ -494,9 +500,11 @@
       p.textContent=n;
       div.appendChild(p);
     }
+  
 
   }
 
+  
 
   
 
@@ -519,6 +527,7 @@
       carrito();
       console.log(lista);
 
+
     }
     
 
@@ -527,60 +536,7 @@
   });
   }
 
-  var butacas=asientos_seleccionados;
-
-
-  $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-
-        $("#producto").on('change', function(e){
-					var idv = $("#producto").val();
-
-          $('#Pelicula-Seleccionada').text(idv);
-				});
-
-
-
-  });
-
-  /*$(document).ready(function(){
-    $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-
-        $('#form').on('submit', function(e){
-            event.preventDefault();
-            var filas = [];
-            //console.log(c); RECONOCE EL ARRAY ENVIADO
-
-            //var codigo = 1;
-            //var mono =  2;
-            //var form =$(this).serialize();
-            //var url =$(this).attr('action');
-            var fila = {
-              butacas_venta:butacas,
-              id: idv
-            };
-            filas.push(fila);//AQUI SE AGREGA AL ARRAY EL JSON CON LOS DATOS
-
-            //console.log(filas); SI ENVIA A LA CONSOLA EL JSON CON LA CLAVE CODIGO PARA EL ARRAY
-
-            /*$.ajax({
-                type: "get",
-                url: "{{URL::to('VMG/pelicula')}}",
-                data: {valores : JSON.stringify(filas)},
-                /*dataType: "json",
-                success: function(data){
-                    
-                    console.log(data)
-                }
-              });
-        });
-
-  });*/
+ 
  </script>
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

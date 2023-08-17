@@ -4,10 +4,21 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Movie;
+use App\Models\Seat;
 
 class saleMovieController extends Controller
 {
-    
+     /*BOLETERIA*/
+     public function ventaPelicula()
+     {
+         $movie = Movie::all();
+         $seat = Seat::all();
+         return view('auth.admin.salesmanagement.saleMovie')->with('movie', $movie)->with('seat', $seat);
+     }
+
+
+
     public function store(Request $request)
     {  
         
@@ -26,27 +37,10 @@ class saleMovieController extends Controller
             return response($butacas);
         }
         
-        ///valida que sea un peticion ajax
-        /*if($request->ajax()){
-        $datos->valores;
-        }   */
 
-        //dd($request);
-        //dd($request->json2);
-        //dd($request->json2['butacas']);
 
         
-        
 
-
-        //$newMovie= new Movie();
-
-        
-        //$newMovie->idCategoryChild=$request->idCategoryChild;
-
-        //$newMovie->save();
-
-        //return redirect()->route('admin.venta')->with('crear','ok');
 
     }
 

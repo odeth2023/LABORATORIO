@@ -36,6 +36,8 @@ class MovieController extends Controller
         //
     }
     
+
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -47,14 +49,28 @@ class MovieController extends Controller
 
         ]);
 
+
+        //un onjeto del modelo movie
         $newMovie= new Movie();
+
+        //hasfile=para preguntar si viene con ese archivo (el nombre que indico 'img')
+        //te dice sabes que tu formulario si viene con este archivo
+        //en caso de que no lo subamos (la img) te dira falso
+        //dd($request->hasFile('img'));
+
         $newMovie->name=$request->name;
 
+        //Proceso de subida de img
         if($request->hasFile('img')){
             $file=$request->file('img');
             $carpetaDestino='assets/images/pictures/';
+            //time: nos trae un string, que en realidad es una marca de tiempo
+            //con esto se evita que aparesca el nombre repetido, al tiempo le concatemos un string, el guion
+            //y el nombre de la img original
             $filename=time().'-'.$file->getClientOriginalName();
+            //moviendo img hacia la carpeta
             $uploadSuccess=$request->file('img')->move($carpetaDestino,$filename);
+            //Guardando los datos de la nueba img carpeta de destino + el nombre en la bd
             $newMovie->img=$carpetaDestino.$filename;
         }
 
@@ -64,15 +80,19 @@ class MovieController extends Controller
         $newMovie->billboard=0;
         $newMovie->idCategoryChild=$request->idCategoryChild;
 
+        //Nota: recordar que los datos(variables) se encuentran en el orden de los mismos en la tabla de la bd
         $newMovie->save();
 
+        //$this->emit("alert");
+
+        //return view('auth.admin.MovieManagement.movie')->with('crear','ok');
 
         return redirect()->route('admin.MovieManagement.movie')->with('crear','ok');
 
     }
 
    
-
+    //MOSTRAR DATOS DE PELICULA POR ID
     public function show($id)
     {
         //
@@ -173,6 +193,4 @@ class MovieController extends Controller
         
         return redirect()->back()->with('eliminar','oki');
     }
-
-
 }

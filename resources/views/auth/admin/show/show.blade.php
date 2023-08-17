@@ -1,24 +1,52 @@
-<div>
+@extends('layouts.masterpage')
+
+@section('content')
+
+
+            <div class="page-header">
+              <h3 class="page-title">Productos</h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <button type="button" class="btn btn-primary">
+                    <a href="{{route('admin.confiteria.vistaregistro')}}" class='text-decoration-none text-light'>Nuevo</a> 
+                  </button>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Listado</h4>
+
+                    <!--<div id=''></div>-->
+                    
+                    </p>
+                    <div class="table-responsive">
+                    <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
 
 
+    <div>
+
+    </div>
 
     <table class="table align-middle mb-0">
         <thead class="">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
                 <th>Estado</th>
-                <th>¿Cartelera?</th>
                 <th>Operaciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($movie as $item)
+            @foreach ($product as $item)
                 <tr>
                     <td>
-                        {{ $item->idMovie }}
+                        {{ $item->idConfectionery}}
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
@@ -26,74 +54,45 @@
                                 class="rounded-circle imgPm" />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1">{{ $item->name }}</p>
-                               <!-- <p class="text-muted mb-0">john.doe@gmail.com</p>-->
                             </div>
                         </div>
                     </td>
-                    <td>
-                        <p class="fw-normal mb-1">{{ $item->description }}</p>
-                    </td>
+                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->quantity}}</td>
                     <!--TOOGLE ACTIVAR/DESACTIVAR PELICULA (DISPONIBILIDAD)-->
-                    <td data-resp="{{ $item->idMovie }}">
-                        <input id='idPelicula' type="hidden" value='{{ $item->idMovie }}'>
+                    <td>
+                        
 
                         <!--SI LA PELICULA ESTA EN ESTADO 0 ES QUE ESTA DESACTIVADA-->
                         @if ($item->state == 0)
-                            <input data-id='{{ $item->idMovie }}' name='estado' class='estado' type="checkbox"
+                            <input data-id='' name='estado' class='estado' type="checkbox"
                                 data-toggle="switchbutton" data-onlabel="Activado" data-offlabel="Desactivado"
                                 data-onstyle="success" data-offstyle="danger">
 
 
                             <!--SINO INDICA QUE ESTA ACTIVADA-->
                         @else
-                            <input data-id='{{ $item->idMovie }}' name='estado' class='estado' type="checkbox"
+                            <input data-id='' name='estado' class='estado' type="checkbox"
                                 data-toggle="switchbutton" checked data-onlabel="Activado" data-offlabel="Desactivado"
                                 data-onstyle="success" data-offstyle="danger">
                         @endif
 
                     </td>
 
-                    <!--VERIFICAR SI PELICULA ESTA ACTIVADA O DESACTIVADA-->
-                    <!--SI ESTA DESACTIVADA ENTONCES SE DESHABILITA EL BOTON DE CARTELERA-->
-                    @if ($item->state == 0)
-                        <td id='{{ $item->idMovie }}'><input data-id='{{ $item->idMovie }}' name='estadoCartelera'
-                                class='estadoCartelera' type="checkbox" data-toggle="switchbutton" data-onlabel="OFF"
-                                data-offlabel="OFF" data-onstyle="secondary" data-offstyle="secondary" disabled></td>
-
-
-                        <!--SINO-->
-                    @else
-                        <!--SE PUEDE USAR EL TOOGLE CARTELERA PARA ACTIVAR O DESACTIVAR-->
-                        <td>
-                            <input id='idPelicula' type="hidden" value='{{ $item->idMovie }}'>
-
-                            <!--SI ESTA DESACTIVADO SE MOSTRARA LO SIGUIENTE-->
-                            @if ($item->billboard == 0)
-                                <input data-id='{{ $item->idMovie }}' name='estadoCartelera' class='estadoCartelera'
-                                    type="checkbox" data-toggle="switchbutton" data-onlabel="ON" data-offlabel="OFF"
-                                    data-onstyle="primary" data-offstyle="secondary">
-
-
-                                <!--//SINO-->
-                            @else
-                                <input data-id='{{ $item->idMovie }}' name='estadoCartelera' class='estadoCartelera'
-                                    type="checkbox" data-toggle="switchbutton" checked data-onlabel="ON"
-                                    data-offlabel="OFF" data-onstyle="primary" data-offstyle="secondary">
-                            @endif
-                        </td>
-                    @endif
 
                     <!--BOTONES CRUD-->
                     <td colspan="2">
-                        <a href="{{ route('admin.MovieManagement.edit', $item) }}"
-                            class='text-decoration-none text-light'>
+                        
+                                                 
+                        <a href="{{ route('admin.confiteria.edit', $item) }}" class='text-decoration-none text-light'>
+                        
                             <button type="button" class="btn btn-primary">
                                 <i class="bi bi-pen-fill"></i>
                             </button>
                         </a>
                         
                         <div>
-                            <form action="{{ route('admin.MovieManagement.delete', $item->idMovie) }}" method="POST" class='text-light' id='formulario-eliminar'>
+                            <form action="{{ route('admin.confiteria.delete', $item->idConfectionery) }}" method="POST" class='text-light' id='formulario-eliminar'>
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <button type="submit"
@@ -118,6 +117,21 @@
 
 </div>
 
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+             
+
+              
+            </div>
+
+
+
+@endsection
+
+
 @section('js')
 
 
@@ -126,7 +140,7 @@
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Has creado una película',
+            title: 'Has creado un producto',
             showConfirmButton: false,
             timer: 1500
         })
@@ -139,7 +153,7 @@
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Has editado una película',
+            title: 'Has editado un producto',
             showConfirmButton: false,
             timer: 1500
         })
@@ -151,7 +165,7 @@
     <script type='text/javascript'>
        Swal.fire(
       'Eliminado',
-      'Has eliminado una película',
+      'Has eliminado un producto',
       'success'
     )
     </script>

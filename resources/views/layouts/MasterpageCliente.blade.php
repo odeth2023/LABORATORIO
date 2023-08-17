@@ -9,18 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Peliculas</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="img/peli.png" type="image/x-icon">
+    <link rel="icon" href="../assetsCustomer/images/peli.png" type="image/x-icon">
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../assetsCustomer/css/Pelicula/style.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/nice-select.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/slicknav.min.css')}}"type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Pelicula/style.css')}}" type="text/css">
+
+    <!-- Css Confiteria 
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Confiteria/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assetsCustomer/css/Confiteria/style.css')}}" type="text/css">-->
 </head>
 
 <body>

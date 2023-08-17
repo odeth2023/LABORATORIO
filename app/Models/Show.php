@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movieshow extends Model
 {
-    protected $table = 'movieshow';
+    protected $table = 'show';
     protected $primaryKey ='idfunction';
-    protected $fillable = ['schedule','idMovie','idRoom','price'];
+    protected $fillable = ['schedule','hour','idMovie','idRoom','idseatdetail','price_show'];
     use HasFactory;
 
     

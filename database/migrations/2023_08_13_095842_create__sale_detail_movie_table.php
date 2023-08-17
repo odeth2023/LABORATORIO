@@ -25,7 +25,7 @@ class CreateSaleDetailMovieTable extends Migration
             $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('idfunction');
-            $table->foreign('idfunction')->references('idfunction')->on('MovieShow')->onDelete('cascade');
+            $table->foreign('idfunction')->references('idfunction')->on('Show')->onDelete('cascade');
            
             $table->timestamps();
         });

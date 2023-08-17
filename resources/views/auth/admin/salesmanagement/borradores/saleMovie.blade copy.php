@@ -22,7 +22,7 @@
             <label style="width: 10%" class="input-group-text">Options</label>
 
             <div style="width: 90%" class='contenedor-form-search'>
-              <select id='producto' name='producto'  style="width: 100%" class="p-5 js-example-basic-single js-states form-control border-none SELECCION_MOVIE" id="search_pelicula">
+              <select style="width: 100%" class="p-5 js-example-basic-single js-states form-control border-none SELECCION_MOVIE" id="search_pelicula">
                 @foreach ($movie as $item)
                   <option value="{{ $item->name }}" >{{ $item->name }}</option>
                 @endforeach  
@@ -438,7 +438,7 @@
  <script type='text/javascript'>
   //Pelicula obtenida del buscador
   const BUSCADOR = document.getElementById('SELECCION_MOVIE');
-  //const PeliculaEncontrada = document.getElementById('search_pelicula').value;
+  const PeliculaEncontrada = document.getElementById('search_pelicula').value;
   //Poner el nombre de la pelicula obtenida en la lista de venta
   const PeliculaSeleccionada = document.getElementById('Pelicula-Seleccionada');
   const ASIENTOS = document.querySelector('.ASIENTOS');
@@ -452,6 +452,7 @@
   const asientos_seleccionados = [];
   const lista = document.getElementById('lista-asientos-seleccionados');
   var div= document.createElement('div');
+  //div.classList.add('mydiv');
   lista.appendChild(div);
 
   //var json = {};
@@ -459,7 +460,11 @@
   //let ticketPrice = +movieSelect.value;
   let ticketPrice = 25;
 
-  if(PeliculaSeleccionada!=false){
+  function pelicula_encontrada(){
+      PeliculaSeleccionada.innerText = PeliculaEncontrada;
+    }
+
+  if(PeliculaSeleccionada!=''){
     //Update total and count
     function updateSelectedCount() {
       const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -469,11 +474,18 @@
       
       total.innerText = selectedSeatsCount * ticketPrice;
       total2.innerText = selectedSeatsCount * ticketPrice;
+      /*if( total.innerText>0){
+        PeliculaSeleccionada.innerText = PeliculaEncontrada;
+        
+      }
+      else{
+        PeliculaSeleccionada.innerText=' ';
+      }*/
     }
    
     function carrito() {
       div= document.createElement('div');
-      
+      //div.classList.add('mydiv');
       lista.appendChild(div);
       asientos_seleccionados.splice(0,asientos_seleccionados.length);
       
@@ -494,9 +506,21 @@
       p.textContent=n;
       div.appendChild(p);
     }
+    //console.log(asientos_seleccionados);
+
+    /*const p= document.createElement('p');
+    
+    p.textContent=asientos_seleccionados;
+    div.appendChild(p);*/
+
+    
+        //console.log(json);
 
   }
 
+  /*BUSCADOR.addEventListener('click', e => {
+    console.log('a');
+  });*/
 
   
 
@@ -519,6 +543,20 @@
       carrito();
       console.log(lista);
 
+
+      /*if(document.getElementsByClassName("mydiv") !== null){
+        //lista.removeChild(div);
+        updateSelectedCount();
+        carrito();
+        console.log('aqui estoy :D')
+        }
+
+      else{ 
+        lista.removeChild(div)
+          updateSelectedCount();
+          carrito();
+          console.log('buuuu')
+        } */
     }
     
 
@@ -528,19 +566,10 @@
   }
 
   var butacas=asientos_seleccionados;
-
+  //var pelicula=
 
   $(document).ready(function() {
         $('.js-example-basic-single').select2();
-
-        $("#producto").on('change', function(e){
-					var idv = $("#producto").val();
-
-          $('#Pelicula-Seleccionada').text(idv);
-				});
-
-
-
   });
 
   /*$(document).ready(function(){
@@ -561,8 +590,7 @@
             //var form =$(this).serialize();
             //var url =$(this).attr('action');
             var fila = {
-              butacas_venta:butacas,
-              id: idv
+              butacas_venta:butacas
             };
             filas.push(fila);//AQUI SE AGREGA AL ARRAY EL JSON CON LOS DATOS
 

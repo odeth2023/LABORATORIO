@@ -12,8 +12,8 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{route('user.peliculas')}}">En cartelera</a></li>
-                            <li><a href="{{route('user.estrenos')}}">Proximos Estrenos</a></li>
+                            <li><a href="{{route('user.peliculas')}}">En cartelera</a></li>
+                            <li class="active"><a href="{{route('user.estrenos')}}">Proximos Estrenos</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -152,38 +152,11 @@
                     <div class="row">
                         <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                             <div class="row">
-                            @foreach ($movie as $item)
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                    <div class="box">
-                                        <div class="option_container">
-                                            <div class="options">
-                                                <a href="" class="option1">
-                                                    <i class="fa fa-ticket" style='color: white'></i>
-                                                    Comprar
-                                                </a>
-                                                <a href="#" class="option2">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                    Ver Detalles
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="type-lb">
-                                            <p class="sale">Pre-venta</p>
-                                        </div>
-                                        <div class="img-box">
-                                            <img src="../{{ $item->img }}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <h5>{{ $item->movieName }}</h5>
-                                        <ul>
-                                            <li><h6>{{ $item->NombreTipoCategoria }}, {{ $item->duracion }}</h6></li>
-                                        </ul>
-                                    </div>
-                            </div>
+                            
 
 
-                            @endforeach
+
+
                             </div>
                         </div>
                     </div>

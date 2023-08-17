@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Productconfectionery extends Model
+class Sale extends Model
 {
     protected $table = 'sale';
-    protected $primaryKey ='idSale ';
-    protected $fillable = ['total','DateSale','idCustomer','idMovie'];
+    protected $primaryKey ='idSale';
+    protected $fillable = ['total','DateSale','HourSale','idUser'];
     use HasFactory;
 
     

@@ -96,21 +96,24 @@
 							
 							@endphp
 							<tr class="product-row">
-								<td scope="row">
+								<th scope="row">
 									{{ $i }}
-								</td>
+								</th>
 								<td>{{ $item2->name }}</td>
 								<td>{{ $item2->price }}</td>
 								<td><input class="quantity-input" type="number" step="1" min="1" value="{{$item2->pivot->quantity_product}}"
 										data-url="{{route('admin.updateQuantity', $item2)}}"
 										name="quantity-{{$item2->idConfectionery}}"></td>
-								<td class="total-price-container total-price" id='total-price'>
+								<td class="total-price-container ">&nbsp;
+									<span>
+										s/.
+									</span>
+									<span class="total-price" id='total-price'>
 										@php
 											$totalPrice = $item2->price * $item2->pivot->quantity_product
 										@endphp
 										{{$totalPrice}}
-										<input id='' type="hidden" value='{{$totalPrice}}'>
-									
+									</span>
 								</td>
 								<td>
 									<a href="{{ route('admin.quitarProductoVenta', $item2)}}"
@@ -132,31 +135,22 @@
 					</table>
 				</div>
 
-				<form class="forms-sample texto" action="{{ route('admin.finalizarVenta')}}" method='POST' enctype='multipart/form-data'>
-                {{csrf_field()}}
-					<div class='mt-2'>
-						<div class='monto'>
-							<div>Subtotal</div>
-							<div class='total-final' id='total-final'>Total
+				<div class='mt-2'>
+					<div class='monto'>
+						<div>Subtotal</div>
+						<div class='total-final' id='total-final'>Total
 
-							{{$a}}
-								<input id='totalF' type="hidden" value='{{$a}}' name='total'>	
-							</div>
+						{{$a}}
+							<input id='totalF' type="hidden" value='{{$a}}'>	
 						</div>
-
-						<div class='d-flex gap-2 mt-2'>
-							<a href="{{ route('admin.cancelarVenta')}}">
-								<button type="button" class="btn btn-danger">Cancelar Venta</button>
-							</a>
-
-							<a href="">
-								<button type="submit" class="btn btn-primary">Finalizar Venta</button>
-							</a>
-							
-						</div>
-
 					</div>
-				</form>
+
+					<div class='d-flex gap-2 mt-2'>
+						<button type="button" class="btn btn-primary">Finalizar Venta</button>
+						<button type="button" class="btn btn-danger">Cancelar Venta</button>
+					</div>
+
+				</div>
 
 			</div>
 		</div>

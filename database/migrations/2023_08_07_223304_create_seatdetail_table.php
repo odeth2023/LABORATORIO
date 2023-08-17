@@ -14,7 +14,7 @@ class CreateSeatdetailTable extends Migration
     public function up()
     {
         Schema::create('seatdetail', function (Blueprint $table) {
-            $table->id('seatdetail');
+            $table->id('idSeatDetail');
             $table->unsignedBigInteger("idSeat");
             $table->unsignedBigInteger("idRoom");
 
